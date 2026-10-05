@@ -1,0 +1,30 @@
+{
+  "name": "weatherapp_hem",
+  "version": "1.0.0",
+  "description": "WeatherApp",
+  "homepage": "https://github.com/taglal/WeatherApp_HEM#readme",
+  "bugs": {
+    "url": "https://github.com/taglal/WeatherApp_HEM/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taglal/WeatherApp_HEM.git"
+  },
+  "license": "ISC",
+  "author": "Hem",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.5",
+    "express": "^5.2.1",
+    "mysql": "^2.18.1",
+    "sha1": "^1.1.1"
+  }
+}
