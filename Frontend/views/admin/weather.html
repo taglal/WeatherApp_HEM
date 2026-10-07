@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+          href="assets/css/style.css">
+    <title>Weather</title>
+
+</head>
+
+<body>
+
+<div class="weather-page">
+
+    <!-- =========================================
+         WEATHER HEADER
+    ========================================== -->
+
+    <div class="weather-page-header">
+
+        <div class="weather-page-icon">
+            <i class="bi bi-cloud-sun"></i>
+        </div>
+
+        <div>
+
+            <div class="weather-page-small">
+                WEATHER APP
+            </div>
+
+            <h3>
+                Weather
+            </h3>
+
+            <p>
+                Az időjárási adatok megtekintése és kezelése
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         SECTION TITLE
+    ========================================== -->
+
+    <div class="weather-section-title">
+
+        <h4>
+            <i class="bi bi-cloud-sun-fill"></i>
+            Időjárási adatok
+        </h4>
+
+        <span>
+            Elérhető rekordok
+        </span>
+
+    </div>
+
+
+    <!-- =========================================
+         WEATHER LIST
+    ========================================== -->
+
+    <div id="weatherList">
+
+        <!--
+            A weatherCtrl.js ide fogja
+            létrehozni az időjárási kártyákat.
+        -->
+
+    </div>
+
+
+</div>
+
+
+<!-- =====================================================
+     EDIT WEATHER MODAL
+====================================================== -->
+
+<div class="modal fade"
+     id="editWeatherModal"
+     tabindex="-1"
+     aria-labelledby="editWeatherModalLabel"
+     aria-hidden="true">
+
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+
+        <div class="modal-content weather-modal">
+
+
+            <!-- =========================================
+                 MODAL HEADER
+            ========================================== -->
+
+            <div class="modal-header">
+
+                <div>
+
+                    <div class="weather-modal-small">
+                        WEATHER DATA
+                    </div>
+
+                    <h5 class="modal-title"
+                        id="editWeatherModalLabel">
+
+                        <i class="bi bi-pencil-square"></i>
+                        Időjárás szerkesztése
+
+                    </h5>
+
+                </div>
+
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close">
+                </button>
+
+            </div>
+
+
+            <!-- =========================================
+                 MODAL BODY
+            ========================================== -->
+
+            <div class="modal-body">
+
+                <input type="hidden"
+                       id="editWeatherID">
+
+
+                <!-- =====================================
+                     DATE + LOCATION
+                ====================================== -->
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label for="editWeatherDate"
+                               class="form-label">
+
+                            <i class="bi bi-calendar3"></i>
+                            Dátum
+
+                        </label>
+
+                        <input type="date"
+                               class="form-control"
+                               id="editWeatherDate">
+
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+
+                        <label for="editWeatherLocation"
+                               class="form-label">
+
+                            <i class="bi bi-geo-alt"></i>
+                            Helyszín
+
+                        </label>
+
+                        <input type="text"
+                               class="form-control"
+                               id="editWeatherLocation"
+                               placeholder="Pl. Baja">
+
+                    </div>
+
+                </div>
+
+
+                <!-- =====================================
+                     TEMPERATURE
+                ====================================== -->
+
+                <div class="weather-form-section">
+
+                    <div class="weather-form-title">
+
+                        <i class="bi bi-thermometer-half"></i>
+
+                        Hőmérséklet
+
+                    </div>
+
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label for="editWeatherMin"
+                               class="form-label">
+
+                            <i class="bi bi-thermometer-snow"></i>
+                            Minimum hőmérséklet
+
+                        </label>
+
+                        <input type="number"
+                               step="0.1"
+                               class="form-control"
+                               id="editWeatherMin"
+                               placeholder="°C">
+
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+
+                        <label for="editWeatherMax"
+                               class="form-label">
+
+                            <i class="bi bi-thermometer-sun"></i>
+                            Maximum hőmérséklet
+
+                        </label>
+
+                        <input type="number"
+                               step="0.1"
+                               class="form-control"
+                               id="editWeatherMax"
+                               placeholder="°C">
+
+                    </div>
+
+                </div>
+
+
+                <!-- =====================================
+                     WEATHER TYPE
+                ====================================== -->
+
+                <div class="row">
+
+                    <div class="col-12 mb-3">
+
+                        <label for="editWeatherType"
+                               class="form-label">
+
+                            <i class="bi bi-cloud-sun"></i>
+                            Időjárás típusa
+
+                        </label>
+
+                        <input type="text"
+                               class="form-control"
+                               id="editWeatherType"
+                               placeholder="Pl. Napos, Felhős, Esős">
+
+                    </div>
+
+                </div>
+
+
+                <!-- =====================================
+                     PRECIPITATION
+                ====================================== -->
+
+                <div class="weather-form-section">
+
+                    <div class="weather-form-title">
+
+                        <i class="bi bi-cloud-rain"></i>
+
+                        Csapadék
+
+                    </div>
+
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label for="editWeatherPrecipitation"
+                               class="form-label">
+
+                            <i class="bi bi-droplet"></i>
+                            Csapadék
+
+                        </label>
+
+                        <input type="number"
+                               step="0.1"
+                               class="form-control"
+                               id="editWeatherPrecipitation"
+                               placeholder="mm">
+
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+
+                        <label for="editWeatherPrecipitationProbability"
+                               class="form-label">
+
+                            <i class="bi bi-percent"></i>
+                            Csapadék valószínűsége
+
+                        </label>
+
+                        <input type="number"
+                               min="0"
+                               max="100"
+                               class="form-control"
+                               id="editWeatherPrecipitationProbability"
+                               placeholder="%">
+
+                    </div>
+
+                </div>
+
+
+                <!-- =====================================
+                     WIND
+                ====================================== -->
+
+                <div class="weather-form-section">
+
+                    <div class="weather-form-title">
+
+                        <i class="bi bi-wind"></i>
+
+                        Szél
+
+                    </div>
+
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label for="editWeatherWindSpeed"
+                               class="form-label">
+
+                            <i class="bi bi-speedometer"></i>
+                            Szélsebesség
+
+                        </label>
+
+                        <input type="number"
+                               step="0.1"
+                               class="form-control"
+                               id="editWeatherWindSpeed"
+                               placeholder="km/h">
+
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+
+                        <label for="editWeatherWindDirection"
+                               class="form-label">
+
+                            <i class="bi bi-compass"></i>
+                            Szélirány
+
+                        </label>
+
+                        <input type="text"
+                               class="form-control"
+                               id="editWeatherWindDirection"
+                               placeholder="Pl. ÉNy">
+
+                    </div>
+
+                </div>
+
+
+                <!-- =====================================
+                     HUMIDITY + PRESSURE
+                ====================================== -->
+
+                <div class="weather-form-section">
+
+                    <div class="weather-form-title">
+
+                        <i class="bi bi-moisture"></i>
+
+                        Légköri adatok
+
+                    </div>
+
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label for="editWeatherHumidity"
+                               class="form-label">
+
+                            <i class="bi bi-droplet-half"></i>
+                            Páratartalom
+
+                        </label>
+
+                        <input type="number"
+                               min="0"
+                               max="100"
+                               class="form-control"
+                               id="editWeatherHumidity"
+                               placeholder="%">
+
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+
+                        <label for="editWeatherPressure"
+                               class="form-label">
+
+                            <i class="bi bi-speedometer2"></i>
+                            Légnyomás
+
+                        </label>
+
+                        <input type="number"
+                               step="0.1"
+                               class="form-control"
+                               id="editWeatherPressure"
+                               placeholder="hPa">
+
+                    </div>
+
+                </div>
+
+
+                <!-- =====================================
+                     UV INDEX
+                ====================================== -->
+
+                <div class="weather-form-section">
+
+                    <div class="weather-form-title">
+
+                        <i class="bi bi-brightness-high"></i>
+
+                        UV-index
+
+                    </div>
+
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label for="editWeatherUV"
+                               class="form-label">
+
+                            <i class="bi bi-sun"></i>
+                            UV-index
+
+                        </label>
+
+                        <input type="number"
+                               min="0"
+                               step="0.1"
+                               class="form-control"
+                               id="editWeatherUV"
+                               placeholder="UV">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================================
+                 MODAL FOOTER
+            ========================================== -->
+
+            <div class="modal-footer">
+
+                <button type="button"
+                        class="btn weather-btn-secondary"
+                        data-bs-dismiss="modal">
+
+                    <i class="bi bi-x-lg"></i>
+
+                    Mégse
+
+                </button>
+
+
+                <button type="button"
+                        class="btn weather-btn-primary"
+                        onclick="updateWeather()">
+
+                    <i class="bi bi-save"></i>
+
+                    Mentés
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</body>
+
+</html>

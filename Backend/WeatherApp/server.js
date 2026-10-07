@@ -18,6 +18,7 @@ const pool = mysql.createPool({
     database: process.env.DB_NAME
 });
 
+
 pool.getConnection((err, connection) => {
 
     if (err) {
@@ -126,25 +127,47 @@ app.post('/users/register', (req, res) => {
 
 //weather
 
+// ==============================
+// WEATHER - ÖSSZES REKORD
+// ==============================
+
 app.get('/weather', (req, res) => {
+
     const sql = `
-        SELECT *
+        SELECT
+            ID,
+            date,
+            location,
+            temp_min,
+            temp_max,
+            weather_type,
+            precipitation,
+            precipitation_probability,
+            wind_speed,
+            wind_direction,
+            humidity,
+            pressure,
+            uv_index,
+            created_at,
+            updated_at
         FROM weather_forecasts
-        ORDER BY date ASC
+        ORDER BY date DESC, ID DESC
     `;
 
     pool.query(sql, (err, results) => {
+
         if (err) {
-            console.log(err);
+            console.log('WEATHER ERROR:', err);
+
             return res.status(500).json({
                 error: 'Database error'
             });
         }
 
+
         res.status(200).json(results);
     });
 });
-
 app.post('/weather', (req, res) => {
 
     const {
@@ -453,6 +476,165 @@ app.post('/admin/users', (req, res) => {
     });
 });
 
+// ==============================
+// ADMIN DASHBOARD
+// ==============================
+
+app.post('/admin/dashboard', (req, res) => {
+
+    const { luid } = req.body;
+
+    if (!luid) {
+        return res.status(400).json({
+            error: 'Missing user ID'
+        });
+    }
+
+    // Admin ellenőrzése
+    const checkSql = `
+        SELECT role
+        FROM users
+        WHERE ID = ?
+    `;
+
+    pool.query(checkSql, [luid], (err, results) => {
+
+        if (err) {
+            console.log(err);
+
+            return res.status(500).json({
+                error: 'Database error'
+            });
+        }
+
+        if (results.length === 0) {
+            return res.status(404).json({
+                error: 'User not found'
+            });
+        }
+
+        if (results[0].role !== 'admin') {
+            return res.status(403).json({
+                error: 'Access denied'
+            });
+        }
+
+
+        // =========================
+        // FŐ STATISZTIKÁK
+        // =========================
+
+        const statisticsSql = `
+            SELECT
+                COUNT(*) AS totalRecords,
+                COUNT(DISTINCT location) AS totalLocations,
+                ROUND(
+                    AVG((temp_min + temp_max) / 2),
+                    1
+                ) AS averageTemperature,
+                ROUND(
+                    AVG(humidity),
+                    1
+                ) AS averageHumidity
+            FROM weather_forecasts
+        `;
+
+
+        pool.query(statisticsSql, (err, statistics) => {
+
+            if (err) {
+                console.log(err);
+
+                return res.status(500).json({
+                    error: 'Database error'
+                });
+            }
+
+
+            // =========================
+            // LEGUTÓBBI REKORDOK
+            // =========================
+
+            const latestSql = `
+                SELECT
+                    ID,
+                    date,
+                    location,
+                    temp_min,
+                    temp_max,
+                    weather_type,
+                    precipitation,
+                    precipitation_probability,
+                    wind_speed,
+                    wind_direction,
+                    humidity,
+                    pressure,
+                    uv_index
+                FROM weather_forecasts
+                ORDER BY date DESC
+                LIMIT 5
+            `;
+
+
+            pool.query(latestSql, (err, latest) => {
+
+                if (err) {
+                    console.log(err);
+
+                    return res.status(500).json({
+                        error: 'Database error'
+                    });
+                }
+
+
+                // =========================
+                // IDŐJÁRÁS TÍPUSOK
+                // =========================
+
+                const weatherTypesSql = `
+                    SELECT
+                        weather_type,
+                        COUNT(*) AS count
+                    FROM weather_forecasts
+                    GROUP BY weather_type
+                    ORDER BY count DESC
+                `;
+
+
+                pool.query(
+                    weatherTypesSql,
+                    (err, weatherTypes) => {
+
+                        if (err) {
+                            console.log(err);
+
+                            return res.status(500).json({
+                                error: 'Database error'
+                            });
+                        }
+
+
+                        res.status(200).json({
+
+                            statistics: statistics[0],
+
+                            latest: latest,
+
+                            weatherTypes: weatherTypes
+
+                        });
+
+                    }
+                );
+
+            });
+
+        });
+
+    });
+
+});
+
 app.patch('/admin/status', (req, res) => {
 
     const { luid, uid, status } = req.body;
@@ -636,6 +818,144 @@ app.get('/users/:uid', (req, res) => {
 
         res.status(200).json(results[0]);
     });
+});
+
+// ==============================
+// PROFILE MÓDOSÍTÁSA
+// ==============================
+
+app.patch('/users/:uid', (req, res) => {
+
+    const uid = req.params.uid;
+
+    const {
+        username,
+        email,
+        loggedUserID
+    } = req.body;
+
+
+    // =========================
+    // ADATOK ELLENŐRZÉSE
+    // =========================
+
+    if (!username || !email || !loggedUserID) {
+
+        return res.status(400).json({
+            error: 'Missing required fields'
+        });
+
+    }
+
+
+    // Csak a saját profilját módosíthatja
+    if (Number(uid) !== Number(loggedUserID)) {
+
+        return res.status(403).json({
+            error: 'Access denied'
+        });
+
+    }
+
+
+    // =========================
+    // EMAIL ELLENŐRZÉSE
+    // =========================
+
+    const emailRegex =
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email)) {
+
+        return res.status(400).json({
+            error: 'Invalid email address'
+        });
+
+    }
+
+
+    // =========================
+    // EMAIL FOGLALTSÁG
+    // =========================
+
+    const checkSql = `
+        SELECT ID
+        FROM users
+        WHERE email = ?
+        AND ID != ?
+    `;
+
+    pool.query(
+        checkSql,
+        [email, uid],
+        (err, results) => {
+
+            if (err) {
+
+                console.log(err);
+
+                return res.status(500).json({
+                    error: 'Database error'
+                });
+
+            }
+
+
+            if (results.length > 0) {
+
+                return res.status(400).json({
+                    error: 'Email already exists'
+                });
+
+            }
+
+
+            // =========================
+            // USER FRISSÍTÉSE
+            // =========================
+
+            const sql = `
+                UPDATE users
+                SET name = ?,
+                    email = ?
+                WHERE ID = ?
+            `;
+
+            pool.query(
+                sql,
+                [username, email, uid],
+                (err, result) => {
+
+                    if (err) {
+
+                        console.log(err);
+
+                        return res.status(500).json({
+                            error: 'Profile update failed'
+                        });
+
+                    }
+
+
+                    if (result.affectedRows === 0) {
+
+                        return res.status(404).json({
+                            error: 'User not found'
+                        });
+
+                    }
+
+
+                    res.status(200).json({
+                        message: 'Profile updated successfully'
+                    });
+
+                }
+            );
+
+        }
+    );
+
 });
 
 app.post('/users/:uid/passmod', (req, res) => {

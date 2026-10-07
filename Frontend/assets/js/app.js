@@ -4,10 +4,11 @@ const contentBox = document.querySelector('#content');
 
 async function navigate(page) {
 
-
     const user = loadUser();
 
-    // Vendég csak login és register oldalra mehet
+    updateNavbar();
+
+    
     if (!user &&
         page !== 'views/users/login' &&
         page !== 'views/users/register') {
@@ -28,10 +29,13 @@ async function navigate(page) {
 
         contentBox.innerHTML = html;
 
-        
+
         switch (page) {
 
             case 'views/users/home':
+                loadHome();
+                getHomeWeather();
+                showHomeGreeting();
                 break;
 
             case 'views/users/login':
@@ -48,6 +52,7 @@ async function navigate(page) {
                 break;
 
             case 'views/users/profile':
+                getProfile();
                 break;
 
             case 'views/users/password':
@@ -58,7 +63,7 @@ async function navigate(page) {
                 break;
 
             case 'views/admin/dashboard':
-                getStatistics();
+                getDashboard();
                 break;
 
             case 'views/admin/users':
@@ -83,6 +88,42 @@ async function navigate(page) {
     }
 }
 
+function loadHome() {
+
+    const user = loadUser();
+
+    const welcome = document.querySelector('#homeWelcome');
+    const date = document.querySelector('#homeDate');
+
+    if (welcome) {
+
+        if (user) {
+
+            welcome.innerText =
+                `Welcome, ${user.name}!`;
+
+        } else {
+
+            welcome.innerText =
+                'Welcome to the Weather App!';
+
+        }
+    }
+
+
+    if (date) {
+
+        const today = new Date();
+
+        date.innerText =
+            today.toLocaleDateString('hu-HU', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+    }
+}
+
 function updateNavbar() {
 
     const userMenu = document.querySelector('#userMenu');
@@ -92,6 +133,7 @@ function updateNavbar() {
     }
 
     const user = loadUser();
+
 
     // =========================
     // VENDÉG
@@ -104,7 +146,7 @@ function updateNavbar() {
             <li class="nav-item">
                 <a class="nav-link"
                    href="#"
-                   onclick="navigate('views/users/login')">
+                   onclick="navigate('views/users/login'); return false;">
 
                     <i class="bi bi-box-arrow-in-right"></i>
                     Login
@@ -112,10 +154,11 @@ function updateNavbar() {
                 </a>
             </li>
 
+
             <li class="nav-item">
                 <a class="nav-link"
                    href="#"
-                   onclick="navigate('views/users/register')">
+                   onclick="navigate('views/users/register'); return false;">
 
                     <i class="bi bi-person-plus"></i>
                     Register
@@ -130,7 +173,7 @@ function updateNavbar() {
 
 
     // =========================
-    // BEJELENTKEZETT
+    // BEJELENTKEZETT USER
     // =========================
 
     userMenu.innerHTML = `
@@ -138,7 +181,7 @@ function updateNavbar() {
         <li class="nav-item">
             <a class="nav-link"
                href="#"
-               onclick="navigate('views/users/home')">
+               onclick="navigate('views/users/home'); return false;">
 
                 <i class="bi bi-house"></i>
                 Home
@@ -146,10 +189,11 @@ function updateNavbar() {
             </a>
         </li>
 
+
         <li class="nav-item">
             <a class="nav-link"
                href="#"
-               onclick="navigate('views/users/forecast')">
+               onclick="navigate('views/users/forecast'); return false;">
 
                 <i class="bi bi-cloud-sun"></i>
                 Weather
@@ -161,7 +205,7 @@ function updateNavbar() {
 
 
     // =========================
-    // ADMIN
+    // ADMIN MENÜ
     // =========================
 
     if (user.role === 'admin') {
@@ -171,7 +215,7 @@ function updateNavbar() {
             <li class="nav-item">
                 <a class="nav-link"
                    href="#"
-                   onclick="navigate('views/admin/dashboard')">
+                   onclick="navigate('views/admin/dashboard'); return false;">
 
                     <i class="bi bi-speedometer2"></i>
                     Dashboard
@@ -179,10 +223,11 @@ function updateNavbar() {
                 </a>
             </li>
 
+
             <li class="nav-item">
                 <a class="nav-link"
                    href="#"
-                   onclick="navigate('views/admin/users')">
+                   onclick="navigate('views/admin/users'); return false;">
 
                     <i class="bi bi-people"></i>
                     Users
@@ -190,10 +235,11 @@ function updateNavbar() {
                 </a>
             </li>
 
+
             <li class="nav-item">
                 <a class="nav-link"
                    href="#"
-                   onclick="navigate('views/admin/weather')">
+                   onclick="navigate('views/admin/weather'); return false;">
 
                     <i class="bi bi-cloud-sun"></i>
                     Admin Weather
@@ -214,7 +260,7 @@ function updateNavbar() {
         <li class="nav-item">
             <a class="nav-link"
                href="#"
-               onclick="navigate('views/users/profile')">
+               onclick="navigate('views/users/profile'); return false;">
 
                 <i class="bi bi-person"></i>
                 Profile
@@ -222,10 +268,11 @@ function updateNavbar() {
             </a>
         </li>
 
+
         <li class="nav-item">
             <a class="nav-link"
                href="#"
-               onclick="navigate('views/users/password')">
+               onclick="navigate('views/users/password'); return false;">
 
                 <i class="bi bi-key"></i>
                 Password
@@ -233,10 +280,11 @@ function updateNavbar() {
             </a>
         </li>
 
+
         <li class="nav-item">
             <a class="nav-link"
                href="#"
-               onclick="logout()">
+               onclick="logout(); return false;">
 
                 <i class="bi bi-box-arrow-right"></i>
                 Logout
@@ -244,8 +292,26 @@ function updateNavbar() {
             </a>
         </li>
 
+
+        <!-- =========================
+             USER JOBB OLDALT
+        ========================= -->
+
+        <li class="nav-item ms-3 border-start ps-3">
+
+            <span class="nav-link fw-bold">
+
+                <i class="bi bi-person-circle"></i>
+
+                ${user.name}
+
+            </span>
+
+        </li>
+
     `;
 }
+
 function setTheme(theme) {
 
     document.body.setAttribute('data-bs-theme', theme);
