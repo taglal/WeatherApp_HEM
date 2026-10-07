@@ -1,0 +1,58 @@
+
+<h3>
+    <i class="bi bi-box-arrow-in-right"></i>
+    Login
+</h3>
+
+<hr>
+
+<div class="row justify-content-center">
+
+    <div class="col-lg-6">
+
+        <div class="card shadow-sm">
+
+            <div class="card-body p-4">
+
+                <h5 class="mb-4">Login to your account</h5>
+
+                <div class="form-floating mb-3">
+                    <input
+                        type="email"
+                        class="form-control"
+                        id="loginEmail"
+                        placeholder="Email">
+                    <label for="loginEmail">Email</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input
+                        type="password"
+                        class="form-control"
+                        id="loginPassword"
+                        placeholder="Password">
+                    <label for="loginPassword">Password</label>
+                </div>
+
+                <button
+                    type="button"
+                    class="btn btn-primary w-100"
+                    onclick="login()">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    Login
+                </button>
+
+                <div class="text-center mt-3">
+                    Don't have an account?
+                    <a href="#" onclick="navigate('views/users/register')">
+                        Register
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

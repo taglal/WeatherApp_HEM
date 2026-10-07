@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Weather App</title>
+
+
+    <!-- ==============================
+         BOOTSTRAP
+    =============================== -->
+
+    <link rel="stylesheet"
+          href="assets/css/bootstrap.min.css">
+
+
+    <!-- ==============================
+         BOOTSTRAP ICONS
+    =============================== -->
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+    <!-- ==============================
+         SAJÁT CSS
+    =============================== -->
+
+    <link rel="stylesheet"
+          href="assets/css/style.css">
+
+</head>
+
+
+<body data-bs-theme="light">
+
+
+    <!-- ==============================
+         NAVBAR
+    =============================== -->
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom">
+
+        <div class="container">
+
+
+            <!-- ==============================
+                 LOGO
+            =============================== -->
+
+            <a class="navbar-brand fw-bold"
+               href="#"
+               onclick="navigate('views/users/home')">
+
+                <i class="bi bi-cloud-sun"></i>
+
+                Weather App
+
+            </a>
+
+
+            <!-- ==============================
+                 MOBIL NAVBAR GOMB
+            =============================== -->
+
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+
+            <!-- ==============================
+                 NAVBAR TARTALOM
+            =============================== -->
+
+            <div class="collapse navbar-collapse"
+                 id="navbarNav">
+
+
+                <!--
+                    FONTOS:
+
+                    Nincs itt statikus Home vagy Weather.
+
+                    Az app.js tölti ki ezt a menüt.
+                -->
+
+                <ul class="navbar-nav ms-auto"
+                    id="userMenu">
+
+                </ul>
+
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- ==============================
+         MAIN
+    =============================== -->
+
+    <main class="container mt-4">
+
+
+        <!-- ==============================
+             ÜZENETEK
+        =============================== -->
+
+        <div id="msg"></div>
+
+
+        <!-- ==============================
+             OLDAL TARTALMA
+        =============================== -->
+
+        <div id="content"></div>
+
+
+    </main>
+
+
+
+    <!-- ==============================
+         JAVASCRIPT
+    =============================== -->
+
+
+    <!-- Bootstrap -->
+
+    <script src="assets/js/bootstrap.min.js"></script>
+
+
+    <!-- Moment -->
+
+    <script src="assets/js/moment.js"></script>
+
+    <script src="assets/js/moment-with-locales.js"></script>
+
+
+    <!-- ==============================
+         CONTROLLERS
+    =============================== -->
+
+    <script src="controllers/messageCtrl.js"></script>
+
+    <script src="controllers/userCtrl.js"></script>
+
+    <script src="controllers/weatherCtrl.js"></script>
+
+    <script src="controllers/adminCtrl.js"></script>
+
+
+    <!-- ==============================
+         APP
+    =============================== -->
+
+    <script src="assets/js/app.js"></script>
+
+
+</body>
+
+</html>

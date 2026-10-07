@@ -1,0 +1,76 @@
+
+<h3>
+    <i class="bi bi-person-plus-fill"></i>
+    Register
+</h3>
+
+<hr>
+
+<div class="row justify-content-center">
+
+    <div class="col-lg-6">
+
+        <div class="card shadow-sm">
+
+            <div class="card-body p-4">
+
+                <h5 class="mb-4">Create your account</h5>
+
+                <div class="form-floating mb-3">
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="registerName"
+                        placeholder="Name">
+                    <label for="registerName">Name</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input
+                        type="email"
+                        class="form-control"
+                        id="registerEmail"
+                        placeholder="Email">
+                    <label for="registerEmail">Email</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input
+                        type="password"
+                        class="form-control"
+                        id="registerPassword"
+                        placeholder="Password">
+                    <label for="registerPassword">Password</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input
+                        type="password"
+                        class="form-control"
+                        id="registerConfirm"
+                        placeholder="Confirm password">
+                    <label for="registerConfirm">Confirm password</label>
+                </div>
+
+                <button
+                    type="button"
+                    class="btn btn-primary w-100"
+                    onclick="register()">
+                    <i class="bi bi-person-plus"></i>
+                    Register
+                </button>
+
+                <div class="text-center mt-3">
+                    Already have an account?
+                    <a href="#" onclick="navigate('views/users/login')">
+                        Login
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

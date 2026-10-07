@@ -37,11 +37,7 @@ app.get('/', (req, res) => {
     });
 });
 
-const PORT = process.env.PORT;
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
 
 //register
 app.post('/users/register', (req, res) => {
@@ -127,6 +123,406 @@ app.post('/users/register', (req, res) => {
         );
     });
 });
+
+//weather
+
+app.get('/weather', (req, res) => {
+    const sql = `
+        SELECT *
+        FROM weather_forecasts
+        ORDER BY date ASC
+    `;
+
+    pool.query(sql, (err, results) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({
+                error: 'Database error'
+            });
+        }
+
+        res.status(200).json(results);
+    });
+});
+
+app.post('/weather', (req, res) => {
+
+    const {
+        date,
+        location,
+        temp_min,
+        temp_max,
+        weather_type,
+        precipitation,
+        precipitation_probability,
+        wind_speed,
+        wind_direction,
+        humidity,
+        pressure,
+        uv_index
+    } = req.body;
+
+    if (!date || !location || temp_min === undefined ||
+        temp_max === undefined || !weather_type) {
+
+        return res.status(400).json({
+            error: 'Missing required fields'
+        });
+    }
+
+    const sql = `
+        INSERT INTO weather_forecasts
+        (
+            date,
+            location,
+            temp_min,
+            temp_max,
+            weather_type,
+            precipitation,
+            precipitation_probability,
+            wind_speed,
+            wind_direction,
+            humidity,
+            pressure,
+            uv_index
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `;
+
+    pool.query(
+        sql,
+        [
+            date,
+            location,
+            temp_min,
+            temp_max,
+            weather_type,
+            precipitation || 0,
+            precipitation_probability || 0,
+            wind_speed || 0,
+            wind_direction || null,
+            humidity || 0,
+            pressure || 0,
+            uv_index || 0
+        ],
+        (err, result) => {
+
+            if (err) {
+                console.log(err);
+
+                return res.status(500).json({
+                    error: 'Weather forecast creation failed'
+                });
+            }
+
+            res.status(201).json({
+                message: 'Weather forecast created successfully',
+                weatherID: result.insertId
+            });
+        }
+    );
+});
+
+app.patch('/weather/:id', (req, res) => {
+
+    if (!req.body) {
+        return res.status(400).json({
+            error: 'Request body is missing'
+        });
+    }
+
+    const id = req.params.id;
+
+    const {
+        date,
+        location,
+        temp_min,
+        temp_max,
+        weather_type,
+        precipitation,
+        precipitation_probability,
+        wind_speed,
+        wind_direction,
+        humidity,
+        pressure,
+        uv_index
+    } = req.body;
+
+    const sql = `
+        UPDATE weather_forecasts
+        SET date = ?,
+            location = ?,
+            temp_min = ?,
+            temp_max = ?,
+            weather_type = ?,
+            precipitation = ?,
+            precipitation_probability = ?,
+            wind_speed = ?,
+            wind_direction = ?,
+            humidity = ?,
+            pressure = ?,
+            uv_index = ?,
+            updated_at = NOW()
+        WHERE ID = ?
+    `;
+
+    pool.query(
+        sql,
+        [
+            date,
+            location,
+            temp_min,
+            temp_max,
+            weather_type,
+            precipitation,
+            precipitation_probability,
+            wind_speed,
+            wind_direction,
+            humidity,
+            pressure,
+            uv_index,
+            id
+        ],
+        (err, result) => {
+
+            if (err) {
+                console.log(err);
+
+                return res.status(500).json({
+                    error: 'Database error'
+                });
+            }
+
+            if (result.affectedRows === 0) {
+                return res.status(404).json({
+                    error: 'Weather forecast not found'
+                });
+            }
+
+            res.status(200).json({
+                message: 'Weather forecast updated successfully'
+            });
+        }
+    );
+});
+
+app.delete('/weather/:id', (req, res) => {
+
+    const id = req.params.id;
+
+    const checkSql = `
+        SELECT ID
+        FROM weather_forecasts
+        WHERE ID = ?
+    `;
+
+    pool.query(checkSql, [id], (err, results) => {
+
+        if (err) {
+            console.log(err);
+
+            return res.status(500).json({
+                error: 'Database error'
+            });
+        }
+
+        if (results.length === 0) {
+            return res.status(404).json({
+                error: 'Weather forecast not found'
+            });
+        }
+
+        const sql = `
+            DELETE FROM weather_forecasts
+            WHERE ID = ?
+        `;
+
+        pool.query(sql, [id], (err) => {
+
+            if (err) {
+                console.log(err);
+
+                return res.status(500).json({
+                    error: 'Weather forecast deletion failed'
+                });
+            }
+
+            res.status(200).json({
+                message: 'Weather forecast deleted successfully'
+            });
+        });
+    });
+});
+
+app.get('/weather/:id', (req, res) => {
+
+    const id = req.params.id;
+
+    const sql = `
+        SELECT *
+        FROM weather_forecasts
+        WHERE ID = ?
+    `;
+
+    pool.query(sql, [id], (err, results) => {
+
+        if (err) {
+            console.log(err);
+
+            return res.status(500).json({
+                error: 'Database error'
+            });
+        }
+
+        if (results.length === 0) {
+            return res.status(404).json({
+                error: 'Weather forecast not found'
+            });
+        }
+
+        res.status(200).json(results[0]);
+    });
+});
+
+//admin
+
+app.post('/admin/users', (req, res) => {
+
+    const { luid } = req.body;
+
+    if (!luid) {
+        return res.status(400).json({
+            error: 'Missing user ID'
+        });
+    }
+
+    const checkSql = `
+        SELECT role
+        FROM users
+        WHERE ID = ?
+    `;
+
+    pool.query(checkSql, [luid], (err, results) => {
+
+        if (err) {
+            console.log(err);
+
+            return res.status(500).json({
+                error: 'Database error'
+            });
+        }
+
+        if (results.length === 0) {
+            return res.status(404).json({
+                error: 'User not found'
+            });
+        }
+
+        if (results[0].role !== 'admin') {
+            return res.status(403).json({
+                error: 'Access denied'
+            });
+        }
+
+        const sql = `
+            SELECT
+                ID,
+                name,
+                email,
+                role,
+                status,
+                reg,
+                last,
+                loginCount
+            FROM users
+            ORDER BY ID ASC
+        `;
+
+        pool.query(sql, (err, results) => {
+
+            if (err) {
+                console.log(err);
+
+                return res.status(500).json({
+                    error: 'Database error'
+                });
+            }
+
+            res.status(200).json(results);
+        });
+    });
+});
+
+app.patch('/admin/status', (req, res) => {
+
+    const { luid, uid, status } = req.body;
+
+    if (!luid || !uid || status === undefined) {
+        return res.status(400).json({
+            error: 'Missing required fields'
+        });
+    }
+
+    const checkSql = `
+        SELECT role
+        FROM users
+        WHERE ID = ?
+    `;
+
+    pool.query(checkSql, [luid], (err, results) => {
+
+        if (err) {
+            console.log(err);
+
+            return res.status(500).json({
+                error: 'Database error'
+            });
+        }
+
+        if (results.length === 0) {
+            return res.status(404).json({
+                error: 'Admin user not found'
+            });
+        }
+
+        if (results[0].role !== 'admin') {
+            return res.status(403).json({
+                error: 'Access denied'
+            });
+        }
+
+        const sql = `
+            UPDATE users
+            SET status = ?
+            WHERE ID = ?
+        `;
+
+        pool.query(sql, [status, uid], (err, result) => {
+
+            if (err) {
+                console.log(err);
+
+                return res.status(500).json({
+                    error: 'Database error'
+                });
+            }
+
+            if (result.affectedRows === 0) {
+                return res.status(404).json({
+                    error: 'User not found'
+                });
+            }
+
+            res.status(200).json({
+                message: status == 1
+                    ? 'User activated successfully'
+                    : 'User blocked successfully'
+            });
+        });
+    });
+});
+
+//login
 
 
 app.post('/users/login', (req, res) => {
@@ -328,9 +724,8 @@ app.post('/users/:uid/passmod', (req, res) => {
         );
     });
 });
+const PORT = process.env.PORT;
 
-const APP_PORT = process.env.APP_PORT;
-
-app.listen(APP_PORT, () => {
-    console.log(`Server is running on port ${APP_PORT}`);
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
