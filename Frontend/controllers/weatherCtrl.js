@@ -322,8 +322,18 @@ function drawAdminWeather(weather) {
     if (weather.length === 0) {
 
         weatherList.innerHTML = `
-            <div class="alert alert-info">
-                No weather data available.
+            <div class="weather-empty">
+
+                <i class="bi bi-cloud-slash"></i>
+
+                <h5>
+                    No weather data available.
+                </h5>
+
+                <p>
+                    There are currently no weather records.
+                </p>
+
             </div>
         `;
 
@@ -334,131 +344,133 @@ function drawAdminWeather(weather) {
 
         weatherList.innerHTML += `
 
-            <div class="card mb-3">
+            <div class="admin-weather-card">
 
-                <div class="card-body">
+                <div class="admin-weather-card-body">
 
-                    <div class="row">
 
-                        <!-- LOCATION -->
+                    <!-- LOCATION -->
 
-                        <div class="col-md-6 col-lg-3 mb-3">
+                    <div class="admin-weather-item">
 
-                            <div class="text-center">
+                        <div class="admin-weather-icon">
 
-                                <i class="bi bi-geo-alt fs-1"></i>
-
-                                <h5 class="mt-2">
-                                    Location
-                                </h5>
-
-                                <p>
-                                    ${item.location}
-                                </p>
-
-                            </div>
+                            <i class="bi bi-geo-alt"></i>
 
                         </div>
 
+                        <h5>
+                            Location
+                        </h5>
 
-                        <!-- MINIMUM -->
-
-                        <div class="col-md-6 col-lg-3 mb-3">
-
-                            <div class="text-center">
-
-                                <i class="bi bi-thermometer-low fs-1"></i>
-
-                                <h5 class="mt-2">
-                                    Minimum
-                                </h5>
-
-                                <p>
-                                    ${item.temp_min} °C
-                                </p>
-
-                            </div>
-
-                        </div>
-
-
-                        <!-- MAXIMUM -->
-
-                        <div class="col-md-6 col-lg-3 mb-3">
-
-                            <div class="text-center">
-
-                                <i class="bi bi-thermometer-high fs-1"></i>
-
-                                <h5 class="mt-2">
-                                    Maximum
-                                </h5>
-
-                                <p>
-                                    ${item.temp_max} °C
-                                </p>
-
-                            </div>
-
-                        </div>
-
-
-                        <!-- WEATHER -->
-
-                        <div class="col-md-6 col-lg-3 mb-3">
-
-                            <div class="text-center">
-
-                                <i class="bi bi-cloud-sun fs-1"></i>
-
-                                <h5 class="mt-2">
-                                    Weather
-                                </h5>
-
-                                <p>
-                                    ${item.weather_type}
-                                </p>
-
-                            </div>
-
-                        </div>
+                        <p>
+                            ${item.location ?? '-'}
+                        </p>
 
                     </div>
 
 
-                    <hr>
+                    <!-- MINIMUM -->
 
+                    <div class="admin-weather-item">
 
-                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="admin-weather-icon">
 
-                        <small class="text-muted">
-                            <i class="bi bi-calendar"></i>
-                            ${item.date}
-                        </small>
-
-
-                        <div>
-
-                            <button
-                                class="btn btn-warning btn-sm me-2"
-                                onclick="editWeather(${item.ID})">
-
-                                <i class="bi bi-pencil"></i>
-                                Edit
-
-                            </button>
-
-
-                            <button
-                                class="btn btn-danger btn-sm"
-                                onclick="deleteWeather(${item.ID})">
-
-                                <i class="bi bi-trash"></i>
-                                Delete
-
-                            </button>
+                            <i class="bi bi-thermometer-low"></i>
 
                         </div>
+
+                        <h5>
+                            Minimum
+                        </h5>
+
+                        <p>
+                            ${item.temp_min ?? '--'} °C
+                        </p>
+
+                    </div>
+
+
+                    <!-- MAXIMUM -->
+
+                    <div class="admin-weather-item">
+
+                        <div class="admin-weather-icon">
+
+                            <i class="bi bi-thermometer-high"></i>
+
+                        </div>
+
+                        <h5>
+                            Maximum
+                        </h5>
+
+                        <p>
+                            ${item.temp_max ?? '--'} °C
+                        </p>
+
+                    </div>
+
+
+                    <!-- WEATHER -->
+
+                    <div class="admin-weather-item">
+
+                        <div class="admin-weather-icon">
+
+                            <i class="bi bi-cloud-sun"></i>
+
+                        </div>
+
+                        <h5>
+                            Weather
+                        </h5>
+
+                        <p>
+                            ${item.weather_type ?? '-'}
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- FOOTER -->
+
+                <div class="admin-weather-card-footer">
+
+                    <div class="admin-weather-date">
+
+                        <i class="bi bi-calendar"></i>
+
+                        ${item.date ?? '-'}
+
+                    </div>
+
+
+                    <div class="admin-weather-actions">
+
+                        <button
+                            class="admin-weather-edit-btn"
+                            onclick="editWeather(${item.ID})">
+
+                            <i class="bi bi-pencil"></i>
+
+                            Edit
+
+                        </button>
+
+
+                        <button
+                            class="admin-weather-delete-btn"
+                            onclick="deleteWeather(${item.ID})">
+
+                            <i class="bi bi-trash"></i>
+
+                            Delete
+
+                        </button>
 
                     </div>
 
@@ -827,4 +839,475 @@ async function getHomeWeather() {
         console.error('HOME WEATHER ERROR:', error);
 
     }
+}
+// =========================================================
+// FORECAST
+// =========================================================
+
+async function getForecast() {
+
+    const forecastList =
+        document.querySelector('#forecastList');
+
+    if (!forecastList) {
+        return;
+    }
+
+    try {
+
+        const response =
+            await fetch('http://localhost:3000/weather');
+
+        if (!response.ok) {
+            throw new Error(
+                'HTTP error: ' + response.status
+            );
+        }
+
+        const weatherData =
+            await response.json();
+
+
+        // =================================================
+        // CSAK A JÖVŐBELI NAPOK
+        // =================================================
+
+        const today =
+            new Date().toLocaleDateString(
+                'sv-SE',
+                {
+                    timeZone: 'Europe/Budapest'
+                }
+            );
+
+
+        const forecastData =
+            weatherData
+                .filter(weather => {
+
+                    const weatherDate =
+                        new Date(weather.date)
+                            .toLocaleDateString(
+                                'sv-SE',
+                                {
+                                    timeZone:
+                                        'Europe/Budapest'
+                                }
+                            );
+
+                    return weatherDate >= today;
+
+                })
+                .sort((a, b) =>
+                    new Date(a.date) -
+                    new Date(b.date)
+                );
+
+
+        forecastList.innerHTML = '';
+
+
+        // =================================================
+        // NINCS ADAT
+        // =================================================
+
+        if (forecastData.length === 0) {
+
+            forecastList.innerHTML = `
+
+                <div class="forecast-empty">
+
+                    <i class="bi bi-cloud-slash"></i>
+
+                    <h5>
+                        Nincs elérhető előrejelzés
+                    </h5>
+
+                    <p>
+                        Jelenleg nincs jövőbeli
+                        időjárási adat.
+                    </p>
+
+                </div>
+
+            `;
+
+            return;
+        }
+
+
+        // =================================================
+        // KÁRTYÁK
+        // =================================================
+
+        forecastData.forEach(weather => {
+
+            const date =
+                new Date(weather.date);
+
+
+            const formattedDate =
+                date.toLocaleDateString(
+                    'hu-HU',
+                    {
+                        timeZone:
+                            'Europe/Budapest',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    }
+                );
+
+
+            const dayName =
+                date.toLocaleDateString(
+                    'hu-HU',
+                    {
+                        timeZone:
+                            'Europe/Budapest',
+                        weekday: 'long'
+                    }
+                );
+
+
+            // =================================================
+            // IDŐJÁRÁS IKON
+            // =================================================
+
+            let weatherIcon =
+                'bi-cloud-sun';
+
+
+            const type =
+                String(
+                    weather.weather_type || ''
+                ).toLowerCase();
+
+
+            if (
+                type.includes('napos') ||
+                type.includes('derült')
+            ) {
+
+                weatherIcon =
+                    'bi-sun';
+
+            } else if (
+                type.includes('eső') ||
+                type.includes('eso') ||
+                type.includes('zápor')
+            ) {
+
+                weatherIcon =
+                    'bi-cloud-rain';
+
+            } else if (
+                type.includes('vihar')
+            ) {
+
+                weatherIcon =
+                    'bi-cloud-lightning';
+
+            } else if (
+                type.includes('hó') ||
+                type.includes('havaz')
+            ) {
+
+                weatherIcon =
+                    'bi-cloud-snow';
+
+            } else if (
+                type.includes('felhő') ||
+                type.includes('felho')
+            ) {
+
+                weatherIcon =
+                    'bi-cloud';
+
+            }
+
+
+            forecastList.innerHTML += `
+
+                <div class="forecast-card">
+
+                    <!-- =================================
+                         DÁTUM
+                    ================================== -->
+
+                    <div class="forecast-card-date">
+
+                        <div class="forecast-card-day">
+
+                            ${dayName}
+
+                        </div>
+
+                        <div class="forecast-card-date-text">
+
+                            ${formattedDate}
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =================================
+                         IDŐJÁRÁS
+                    ================================== -->
+
+                    <div class="forecast-card-weather">
+
+                        <div class="forecast-card-icon">
+
+                            <i class="bi ${weatherIcon}">
+                            </i>
+
+                        </div>
+
+
+                        <div>
+
+                            <div class="forecast-card-type">
+
+                                ${weather.weather_type ?? '-'}
+
+                            </div>
+
+                            <div class="forecast-card-location">
+
+                                <i class="bi bi-geo-alt"></i>
+
+                                ${weather.location ?? '-'}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =================================
+                         HŐMÉRSÉKLET
+                    ================================== -->
+
+                    <div class="forecast-card-temperature">
+
+                        <div class="forecast-card-temp-main">
+
+                            ${weather.temp_max ?? '--'} °C
+
+                        </div>
+
+                        <div class="forecast-card-temp-range">
+
+                            min:
+                            ${weather.temp_min ?? '--'} °C
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =================================
+                         RÉSZLETES ADATOK
+                    ================================== -->
+
+                    <div class="forecast-card-details">
+
+
+                        <div class="forecast-card-detail">
+
+                            <i class="bi bi-droplet"></i>
+
+                            ${weather.humidity ?? '--'} %
+
+                        </div>
+
+
+                        <div class="forecast-card-detail">
+
+                            <i class="bi bi-cloud-rain"></i>
+
+                            ${weather.precipitation ?? '--'} mm
+
+                        </div>
+
+
+                        <div class="forecast-card-detail">
+
+                            <i class="bi bi-wind"></i>
+
+                            ${weather.wind_speed ?? '--'} km/h
+
+                        </div>
+
+
+                        <div class="forecast-card-detail">
+
+                            <i class="bi bi-sun"></i>
+
+                            UV ${weather.uv_index ?? '--'}
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =================================
+                         BUTTON
+                    ================================== -->
+
+                    <button
+                        type="button"
+                        class="forecast-card-button"
+                        onclick="showForecastDetails(${weather.ID})">
+
+                        <i class="bi bi-eye"></i>
+
+                        Részletek
+
+                    </button>
+
+                </div>
+
+            `;
+
+        });
+
+
+    } catch (error) {
+
+        console.error(
+            'FORECAST ERROR:',
+            error
+        );
+
+        forecastList.innerHTML = `
+
+            <div class="forecast-empty">
+
+                <i class="bi bi-exclamation-triangle"></i>
+
+                <h5>
+                    Hiba történt
+                </h5>
+
+                <p>
+                    Az előrejelzési adatok
+                    nem tölthetők be.
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+}
+async function showForecastDetails(id) {
+
+    try {
+
+        const response =
+            await fetch(
+                `http://localhost:3000/weather/${id}`
+            );
+
+        if (!response.ok) {
+            throw new Error(
+                'HTTP error: ' + response.status
+            );
+        }
+
+        const weather =
+            await response.json();
+
+
+        document.querySelector(
+            '#forecastModalDate'
+        ).textContent =
+            new Date(weather.date)
+                .toLocaleDateString(
+                    'hu-HU',
+                    {
+                        timeZone:
+                            'Europe/Budapest'
+                    }
+                );
+
+
+        document.querySelector(
+            '#forecastModalLocation'
+        ).textContent =
+            weather.location ?? '-';
+
+
+        document.querySelector(
+            '#forecastModalType'
+        ).textContent =
+            weather.weather_type ?? '-';
+
+
+        document.querySelector(
+            '#forecastModalTemperature'
+        ).textContent =
+            `${weather.temp_max ?? '--'} °C`;
+
+
+        document.querySelector(
+            '#forecastModalMin'
+        ).textContent =
+            `${weather.temp_min ?? '--'} °C`;
+
+
+        document.querySelector(
+            '#forecastModalMax'
+        ).textContent =
+            `${weather.temp_max ?? '--'} °C`;
+
+
+        document.querySelector(
+            '#forecastModalHumidity'
+        ).textContent =
+            `${weather.humidity ?? '--'} %`;
+
+
+        document.querySelector(
+            '#forecastModalPrecipitation'
+        ).textContent =
+            `${weather.precipitation ?? '--'} mm`;
+
+
+        document.querySelector(
+            '#forecastModalWind'
+        ).textContent =
+            `${weather.wind_speed ?? '--'} km/h`;
+
+
+        document.querySelector(
+            '#forecastModalUv'
+        ).textContent =
+            weather.uv_index ?? '--';
+
+
+        const modal =
+            new bootstrap.Modal(
+                document.querySelector(
+                    '#forecastModal'
+                )
+            );
+
+        modal.show();
+
+
+    } catch (error) {
+
+        console.error(
+            'FORECAST DETAILS ERROR:',
+            error
+        );
+
+    }
+
 }

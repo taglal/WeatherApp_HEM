@@ -1,44 +1,27 @@
-<!DOCTYPE html>
-<html lang="hu">
-
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet"
-          href="assets/css/style.css">
-    <title>Weather</title>
-
-</head>
-
-<body>
-
-<div class="weather-page">
+<div class="admin-weather-page">
 
     <!-- =========================================
-         WEATHER HEADER
+         HEADER
     ========================================== -->
 
-    <div class="weather-page-header">
+    <div class="admin-weather-header">
 
-        <div class="weather-page-icon">
-            <i class="bi bi-cloud-sun"></i>
+        <div class="admin-weather-header-icon">
+            <i class="bi bi-cloud-sun-fill"></i>
         </div>
 
         <div>
 
-            <div class="weather-page-small">
+            <div class="admin-weather-header-small">
                 WEATHER APP
             </div>
 
             <h3>
-                Weather
+                Admin Weather
             </h3>
 
             <p>
-                Az időjárási adatok megtekintése és kezelése
+                Az időjárási rekordok megtekintése és kezelése
             </p>
 
         </div>
@@ -50,16 +33,28 @@
          SECTION TITLE
     ========================================== -->
 
-    <div class="weather-section-title">
+    <div class="admin-weather-section-title">
 
-        <h4>
-            <i class="bi bi-cloud-sun-fill"></i>
-            Időjárási adatok
-        </h4>
+        <div>
 
-        <span>
-            Elérhető rekordok
-        </span>
+            <h4>
+                <i class="bi bi-cloud-sun-fill"></i>
+                Időjárási adatok
+            </h4>
+
+            <span>
+                Elérhető rekordok
+            </span>
+
+        </div>
+
+        <div class="admin-weather-info">
+
+            <i class="bi bi-database"></i>
+
+            Weather database
+
+        </div>
 
     </div>
 
@@ -76,7 +71,6 @@
         -->
 
     </div>
-
 
 </div>
 
@@ -112,11 +106,13 @@
                         id="editWeatherModalLabel">
 
                         <i class="bi bi-pencil-square"></i>
+
                         Időjárás szerkesztése
 
                     </h5>
 
                 </div>
+
 
                 <button type="button"
                         class="btn-close"
@@ -149,6 +145,7 @@
                                class="form-label">
 
                             <i class="bi bi-calendar3"></i>
+
                             Dátum
 
                         </label>
@@ -166,6 +163,7 @@
                                class="form-label">
 
                             <i class="bi bi-geo-alt"></i>
+
                             Helyszín
 
                         </label>
@@ -205,6 +203,7 @@
                                class="form-label">
 
                             <i class="bi bi-thermometer-snow"></i>
+
                             Minimum hőmérséklet
 
                         </label>
@@ -224,6 +223,7 @@
                                class="form-label">
 
                             <i class="bi bi-thermometer-sun"></i>
+
                             Maximum hőmérséklet
 
                         </label>
@@ -251,6 +251,7 @@
                                class="form-label">
 
                             <i class="bi bi-cloud-sun"></i>
+
                             Időjárás típusa
 
                         </label>
@@ -290,6 +291,7 @@
                                class="form-label">
 
                             <i class="bi bi-droplet"></i>
+
                             Csapadék
 
                         </label>
@@ -309,6 +311,7 @@
                                class="form-label">
 
                             <i class="bi bi-percent"></i>
+
                             Csapadék valószínűsége
 
                         </label>
@@ -350,6 +353,7 @@
                                class="form-label">
 
                             <i class="bi bi-speedometer"></i>
+
                             Szélsebesség
 
                         </label>
@@ -369,6 +373,7 @@
                                class="form-label">
 
                             <i class="bi bi-compass"></i>
+
                             Szélirány
 
                         </label>
@@ -408,6 +413,7 @@
                                class="form-label">
 
                             <i class="bi bi-droplet-half"></i>
+
                             Páratartalom
 
                         </label>
@@ -428,6 +434,7 @@
                                class="form-label">
 
                             <i class="bi bi-speedometer2"></i>
+
                             Légnyomás
 
                         </label>
@@ -468,6 +475,7 @@
                                class="form-label">
 
                             <i class="bi bi-sun"></i>
+
                             UV-index
 
                         </label>
@@ -521,8 +529,3 @@
     </div>
 
 </div>
-
-
-</body>
-
-</html>

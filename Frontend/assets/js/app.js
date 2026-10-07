@@ -46,6 +46,7 @@ async function navigate(page) {
 
             case 'views/users/forecast':
                 getWeather();
+                getForecast();
                 break;
 
             case 'views/users/details':
@@ -85,6 +86,86 @@ async function navigate(page) {
                 The requested page could not be loaded.
             </div>
         `;
+    }
+}
+
+/* =========================================================
+   THEME
+========================================================= */
+
+function loadTheme() {
+
+    const savedTheme = localStorage.getItem('theme');
+
+    if (savedTheme === 'dark') {
+
+        document.body.classList.add('dark-theme');
+
+    } else {
+
+        document.body.classList.remove('dark-theme');
+
+    }
+
+    updateThemeButton();
+}
+
+
+/* =========================================================
+   THEME TOGGLE
+========================================================= */
+
+function toggleTheme() {
+
+    document.body.classList.toggle('dark-theme');
+
+    const isDark =
+        document.body.classList.contains('dark-theme');
+
+    localStorage.setItem(
+        'theme',
+        isDark ? 'dark' : 'light'
+    );
+
+    updateThemeButton();
+}
+
+
+/* =========================================================
+   UPDATE BUTTON
+========================================================= */
+
+function updateThemeButton() {
+
+    const icon =
+        document.querySelector('#themeToggleIcon');
+
+    const text =
+        document.querySelector('#themeToggleText');
+
+    if (!icon || !text) {
+        return;
+    }
+
+    const isDark =
+        document.body.classList.contains('dark-theme');
+
+
+    if (isDark) {
+
+        icon.className =
+            'bi bi-sun';
+
+        text.textContent =
+            'Light';
+
+    } else {
+
+        icon.className =
+            'bi bi-moon-stars';
+
+        text.textContent =
+            'Dark';
     }
 }
 
@@ -324,6 +405,7 @@ function setTheme(theme) {
 document.addEventListener('DOMContentLoaded', () => {
 
     updateNavbar();
+    loadTheme();
 
     navigate('views/users/home');
 

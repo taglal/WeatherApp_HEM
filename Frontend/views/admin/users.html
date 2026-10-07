@@ -1,46 +1,166 @@
+<div class="users-page">
 
-<h3>
-    <i class="bi bi-people-fill"></i>
-    Users
-</h3>
+    <!-- =========================================
+         HEADER
+    ========================================== -->
 
-<hr>
+    <div class="users-header">
 
-<div class="card">
-    <div class="card-header d-flex justify-content-between align-items-center">
-        <strong>All users</strong>
+        <div class="users-header-icon">
+            <i class="bi bi-people-fill"></i>
+        </div>
 
-        <span class="badge bg-primary">
-            Users: <span id="usersCount">0</span>
-        </span>
+        <div>
+
+            <div class="users-header-small">
+                WEATHER APP
+            </div>
+
+            <h3>
+                Users
+            </h3>
+
+            <p>
+                A rendszer felhasználóinak kezelése
+            </p>
+
+        </div>
+
     </div>
 
-    <div class="card-body">
+
+    <!-- =========================================
+         SECTION TITLE
+    ========================================== -->
+
+    <div class="users-section-title">
+
+        <div>
+
+            <h4>
+                <i class="bi bi-people"></i>
+                All users
+            </h4>
+
+            <span>
+                Regisztrált felhasználók
+            </span>
+
+        </div>
+
+
+        <div class="users-count">
+
+            <i class="bi bi-person-check"></i>
+
+            Users:
+
+            <strong id="usersCount">
+                0
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         USERS TABLE
+    ========================================== -->
+
+    <div class="users-table-card">
+
+        <div class="users-table-header">
+
+            <div>
+
+                <div class="users-table-small">
+                    USER MANAGEMENT
+                </div>
+
+                <h5>
+                    <i class="bi bi-person-lines-fill"></i>
+                    Felhasználók
+                </h5>
+
+            </div>
+
+            <div class="users-table-info">
+
+                <i class="bi bi-shield-check"></i>
+
+                Admin panel
+
+            </div>
+
+        </div>
+
 
         <div class="table-responsive">
 
-            <table class="table table-hover table-striped align-middle">
+            <table class="table users-table align-middle">
 
                 <thead>
+
                     <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Role</th>
-                        <th>Registered</th>
-                        <th>Last login</th>
-                        <th>Login count</th>
-                        <th>Status</th>
-                        <th>Action</th>
+
+                        <th>
+                            ID
+                        </th>
+
+                        <th>
+                            Name
+                        </th>
+
+                        <th>
+                            Email
+                        </th>
+
+                        <th>
+                            Role
+                        </th>
+
+                        <th>
+                            Registered
+                        </th>
+
+                        <th>
+                            Last login
+                        </th>
+
+                        <th>
+                            Login count
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
                     </tr>
+
                 </thead>
+
 
                 <tbody id="usersList">
 
                     <tr>
-                        <td colspan="9" class="text-center">
-                            No users found.
+
+                        <td
+                            colspan="9"
+                            class="users-empty">
+
+                            <i class="bi bi-people"></i>
+
+                            <div>
+                                No users found.
+                            </div>
+
                         </td>
+
                     </tr>
 
                 </tbody>
@@ -50,4 +170,5 @@
         </div>
 
     </div>
+
 </div>
