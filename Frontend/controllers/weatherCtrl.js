@@ -869,7 +869,7 @@ async function getForecast() {
 
 
         // =================================================
-        // CSAK A JÖVŐBELI NAPOK
+        // CSAK A MAI ÉS JÖVŐBELI NAPOK
         // =================================================
 
         const today =
@@ -890,8 +890,7 @@ async function getForecast() {
                             .toLocaleDateString(
                                 'sv-SE',
                                 {
-                                    timeZone:
-                                        'Europe/Budapest'
+                                    timeZone: 'Europe/Budapest'
                                 }
                             );
 
@@ -904,6 +903,14 @@ async function getForecast() {
                 );
 
 
+        // =================================================
+        // GRAFIKON ADATAINAK ELTÁROLÁSA
+        // =================================================
+
+        forecastChartData = forecastData;
+
+
+        // Korábbi kártyák törlése
         forecastList.innerHTML = '';
 
 
@@ -932,6 +939,16 @@ async function getForecast() {
 
             `;
 
+            const chartMessage =
+                document.querySelector(
+                    '#forecastChartMessage'
+                );
+
+            if (chartMessage) {
+                chartMessage.textContent =
+                    'Nincs megjeleníthető előrejelzési adat.';
+            }
+
             return;
         }
 
@@ -950,8 +967,7 @@ async function getForecast() {
                 date.toLocaleDateString(
                     'hu-HU',
                     {
-                        timeZone:
-                            'Europe/Budapest',
+                        timeZone: 'Europe/Budapest',
                         year: 'numeric',
                         month: 'long',
                         day: 'numeric'
@@ -963,8 +979,7 @@ async function getForecast() {
                 date.toLocaleDateString(
                     'hu-HU',
                     {
-                        timeZone:
-                            'Europe/Budapest',
+                        timeZone: 'Europe/Budapest',
                         weekday: 'long'
                     }
                 );
@@ -1027,51 +1042,39 @@ async function getForecast() {
             }
 
 
+            // =================================================
+            // KÁRTYA LÉTREHOZÁSA
+            // =================================================
+
             forecastList.innerHTML += `
 
                 <div class="forecast-card">
 
-                    <!-- =================================
-                         DÁTUM
-                    ================================== -->
-
                     <div class="forecast-card-date">
 
                         <div class="forecast-card-day">
-
                             ${dayName}
-
                         </div>
 
                         <div class="forecast-card-date-text">
-
                             ${formattedDate}
-
                         </div>
 
                     </div>
 
 
-                    <!-- =================================
-                         IDŐJÁRÁS
-                    ================================== -->
-
                     <div class="forecast-card-weather">
 
                         <div class="forecast-card-icon">
 
-                            <i class="bi ${weatherIcon}">
-                            </i>
+                            <i class="bi ${weatherIcon}"></i>
 
                         </div>
-
 
                         <div>
 
                             <div class="forecast-card-type">
-
                                 ${weather.weather_type ?? '-'}
-
                             </div>
 
                             <div class="forecast-card-location">
@@ -1087,16 +1090,10 @@ async function getForecast() {
                     </div>
 
 
-                    <!-- =================================
-                         HŐMÉRSÉKLET
-                    ================================== -->
-
                     <div class="forecast-card-temperature">
 
                         <div class="forecast-card-temp-main">
-
                             ${weather.temp_max ?? '--'} °C
-
                         </div>
 
                         <div class="forecast-card-temp-range">
@@ -1109,12 +1106,7 @@ async function getForecast() {
                     </div>
 
 
-                    <!-- =================================
-                         RÉSZLETES ADATOK
-                    ================================== -->
-
                     <div class="forecast-card-details">
-
 
                         <div class="forecast-card-detail">
 
@@ -1124,7 +1116,6 @@ async function getForecast() {
 
                         </div>
 
-
                         <div class="forecast-card-detail">
 
                             <i class="bi bi-cloud-rain"></i>
@@ -1133,7 +1124,6 @@ async function getForecast() {
 
                         </div>
 
-
                         <div class="forecast-card-detail">
 
                             <i class="bi bi-wind"></i>
@@ -1141,7 +1131,6 @@ async function getForecast() {
                             ${weather.wind_speed ?? '--'} km/h
 
                         </div>
-
 
                         <div class="forecast-card-detail">
 
@@ -1153,10 +1142,6 @@ async function getForecast() {
 
                     </div>
 
-
-                    <!-- =================================
-                         BUTTON
-                    ================================== -->
 
                     <button
                         type="button"
@@ -1174,6 +1159,15 @@ async function getForecast() {
             `;
 
         });
+
+
+        // =================================================
+        // GRAFIKON FRISSÍTÉSE, HA AZ A KIVÁLASZTOTT NÉZET
+        // =================================================
+
+        if (forecastViewMode === 'chart') {
+            drawForecastTemperatureChart();
+        }
 
 
     } catch (error) {
@@ -1205,101 +1199,108 @@ async function getForecast() {
     }
 
 }
+
+
 async function showForecastDetails(id) {
 
     try {
 
-        const response =
-            await fetch(
-                `http://localhost:3000/weather/${id}`
-            );
+        const response = await fetch(
+            `http://localhost:3000/weather/${id}`
+        );
 
         if (!response.ok) {
             throw new Error(
-                'HTTP error: ' + response.status
+                `HTTP hiba: ${response.status}`
             );
         }
 
-        const weather =
-            await response.json();
+        const weather = await response.json();
 
+        const setText = (selector, value) => {
+            const element = document.querySelector(selector);
 
-        document.querySelector(
-            '#forecastModalDate'
-        ).textContent =
-            new Date(weather.date)
-                .toLocaleDateString(
-                    'hu-HU',
-                    {
-                        timeZone:
-                            'Europe/Budapest'
-                    }
+            if (element) {
+                element.textContent = value;
+            } else {
+                console.warn(
+                    `Nem található HTML-elem: ${selector}`
                 );
+            }
+        };
 
+        // Dátum formázása időzóna miatti eltolás nélkül
+        const dateText = String(weather.date ?? '').slice(0, 10);
+        const dateParts = dateText.split('-');
 
-        document.querySelector(
-            '#forecastModalLocation'
-        ).textContent =
-            weather.location ?? '-';
+        let formattedDate = '-';
 
+        if (
+            dateParts.length === 3 &&
+            dateParts.every(part => part.length > 0)
+        ) {
+            formattedDate =
+                `${dateParts[2]}.${dateParts[1]}.${dateParts[0]}.`;
+        }
 
-        document.querySelector(
-            '#forecastModalType'
-        ).textContent =
-            weather.weather_type ?? '-';
+        setText('#forecastModalDate', formattedDate);
+        setText('#forecastModalLocation', weather.location ?? '-');
+        setText('#forecastModalType', weather.weather_type ?? '-');
 
+        setText(
+            '#forecastModalMin',
+            `${weather.temp_min ?? '--'} °C`
+        );
 
-        document.querySelector(
-            '#forecastModalTemperature'
-        ).textContent =
-            `${weather.temp_max ?? '--'} °C`;
+        setText(
+            '#forecastModalMax',
+            `${weather.temp_max ?? '--'} °C`
+        );
 
+        setText(
+            '#forecastModalHumidity',
+            weather.humidity == null
+                ? '-- %'
+                : `${weather.humidity} %`
+        );
 
-        document.querySelector(
-            '#forecastModalMin'
-        ).textContent =
-            `${weather.temp_min ?? '--'} °C`;
+        setText(
+            '#forecastModalPrecipitation',
+            weather.precipitation == null
+                ? '-- mm'
+                : `${weather.precipitation} mm`
+        );
 
+        setText(
+            '#forecastModalWind',
+            weather.wind_speed == null
+                ? '-- km/h'
+                : `${weather.wind_speed} km/h`
+        );
 
-        document.querySelector(
-            '#forecastModalMax'
-        ).textContent =
-            `${weather.temp_max ?? '--'} °C`;
+        setText(
+            '#forecastModalUv',
+            weather.uv_index ?? '--'
+        );
 
+        const modalElement =
+            document.querySelector('#forecastModal');
 
-        document.querySelector(
-            '#forecastModalHumidity'
-        ).textContent =
-            `${weather.humidity ?? '--'} %`;
-
-
-        document.querySelector(
-            '#forecastModalPrecipitation'
-        ).textContent =
-            `${weather.precipitation ?? '--'} mm`;
-
-
-        document.querySelector(
-            '#forecastModalWind'
-        ).textContent =
-            `${weather.wind_speed ?? '--'} km/h`;
-
-
-        document.querySelector(
-            '#forecastModalUv'
-        ).textContent =
-            weather.uv_index ?? '--';
-
-
-        const modal =
-            new bootstrap.Modal(
-                document.querySelector(
-                    '#forecastModal'
-                )
+        if (!modalElement) {
+            throw new Error(
+                'Nem található a forecastModal HTML-elem.'
             );
+        }
 
-        modal.show();
+        if (typeof bootstrap === 'undefined') {
+            throw new Error(
+                'A Bootstrap JavaScript nincs betöltve.'
+            );
+        }
 
+        bootstrap.Modal
+            .getOrCreateInstance(modalElement)
+            .show();
 
     } catch (error) {
 
@@ -1308,6 +1309,270 @@ async function showForecastDetails(id) {
             error
         );
 
+        if (typeof showMessage === 'function') {
+            showMessage(
+                'danger',
+                'Hiba',
+                'Nem sikerült betölteni az előrejelzés részleteit.'
+            );
+        }
     }
+}
+
+
+/* =========================================
+   FORECAST VIEW SWITCH + TEMPERATURE CHART
+========================================= */
+
+let forecastViewMode = 'cards';
+let forecastChartData = [];
+let forecastChartInstance = null;
+
+
+/* =========================================
+   NÉZETVÁLTÁS
+========================================= */
+
+function setForecastView(mode) {
+
+    forecastViewMode = mode;
+
+    const forecastList = document.querySelector('#forecastList');
+    const chartView = document.querySelector('#forecastChartView');
+
+    const cardsButton = document.querySelector('#forecastCardsButton');
+    const chartButton = document.querySelector('#forecastChartButton');
+
+    if (!forecastList || !chartView || !cardsButton || !chartButton) {
+        return;
+    }
+
+    const showChart = mode === 'chart';
+
+    // Kártyák és grafikon közötti váltás
+    forecastList.style.display = showChart ? 'none' : '';
+    chartView.style.display = showChart ? 'block' : 'none';
+
+    // Aktív gomb megjelenítése
+    cardsButton.classList.toggle('active', !showChart);
+    chartButton.classList.toggle('active', showChart);
+
+    cardsButton.setAttribute('aria-pressed', String(!showChart));
+    chartButton.setAttribute('aria-pressed', String(showChart));
+
+    // A grafikon kirajzolása
+    if (showChart) {
+        drawForecastTemperatureChart();
+    }
+}
+
+
+/* =========================================
+   HŐMÉRSÉKLETI GRAFIKON
+========================================= */
+
+function drawForecastTemperatureChart() {
+
+    const canvas = document.querySelector('#forecastTemperatureChart');
+    const message = document.querySelector('#forecastChartMessage');
+
+    if (!canvas || !message) {
+        return;
+    }
+
+    // Chart.js ellenőrzése
+    if (typeof Chart === 'undefined') {
+        message.textContent = 'A grafikonkönyvtár nem tölthető be.';
+        return;
+    }
+
+    // Korábbi grafikon törlése
+    if (forecastChartInstance) {
+        forecastChartInstance.destroy();
+        forecastChartInstance = null;
+    }
+
+    // Nincs megjeleníthető adat
+    if (!forecastChartData || forecastChartData.length === 0) {
+        message.textContent = 'Nincs megjeleníthető előrejelzési adat.';
+        return;
+    }
+
+    // Adatok rendezése dátum szerint
+    const sortedData = [...forecastChartData].sort((a, b) => {
+        return new Date(a.date) - new Date(b.date);
+    });
+
+    // Dátumok előkészítése
+    const labels = sortedData.map(item => {
+
+        const dateText = String(item.date).slice(0, 10);
+        const parts = dateText.split('-');
+
+        if (parts.length !== 3) {
+            return dateText;
+        }
+
+        return `${parts[2]}.${parts[1]}.`;
+    });
+
+    // Minimum- és maximum-hőmérsékletek
+    const minValues = sortedData.map(item => {
+        return item.temp_min == null ? null : Number(item.temp_min);
+    });
+
+    const maxValues = sortedData.map(item => {
+        return item.temp_max == null ? null : Number(item.temp_max);
+    });
+
+    // Színek a jelenlegi témához igazítva
+    const styles = getComputedStyle(document.body);
+
+    const textColor =
+        styles.getPropertyValue('--text-main').trim() ||
+        (document.body.classList.contains('dark-theme')
+            ? '#f5f5f5'
+            : '#222222');
+
+    const secondaryColor =
+        styles.getPropertyValue('--text-secondary').trim() ||
+        '#888888';
+
+    const gridColor =
+        styles.getPropertyValue('--glass-border').trim() ||
+        'rgba(128, 128, 128, 0.25)';
+
+
+    // Grafikon létrehozása
+    forecastChartInstance = new Chart(canvas, {
+
+        type: 'line',
+
+        data: {
+
+            labels: labels,
+
+            datasets: [
+
+                {
+                    label: 'Minimum (°C)',
+                    data: minValues,
+
+                    borderColor: secondaryColor,
+                    backgroundColor: 'transparent',
+
+                    borderWidth: 3,
+                    pointRadius: 4,
+                    pointHoverRadius: 7,
+
+                    tension: 0.3,
+                    spanGaps: false
+                },
+
+                {
+                    label: 'Maximum (°C)',
+                    data: maxValues,
+
+                    borderColor: textColor,
+                    backgroundColor: 'transparent',
+
+                    borderWidth: 3,
+                    borderDash: [7, 5],
+
+                    pointRadius: 4,
+                    pointHoverRadius: 7,
+
+                    tension: 0.3,
+                    spanGaps: false
+                }
+
+            ]
+
+        },
+
+        options: {
+
+            responsive: true,
+            maintainAspectRatio: false,
+
+            interaction: {
+                mode: 'index',
+                intersect: false
+            },
+
+            plugins: {
+
+                // A külön jelmagyarázatot a HTML biztosítja
+                legend: {
+                    display: false
+                },
+
+                tooltip: {
+
+                    callbacks: {
+
+                        label(context) {
+
+                            const value = context.parsed.y;
+
+                            return `${context.dataset.label}: ${
+                                value == null ? '-' : value
+                            } °C`;
+                        }
+
+                    }
+
+                }
+
+            },
+
+            scales: {
+
+                x: {
+
+                    ticks: {
+                        color: secondaryColor
+                    },
+
+                    grid: {
+                        color: gridColor
+                    }
+
+                },
+
+                y: {
+
+                    title: {
+
+                        display: true,
+                        text: 'Hőmérséklet (°C)',
+                        color: textColor
+
+                    },
+
+                    ticks: {
+
+                        color: secondaryColor,
+
+                        callback(value) {
+                            return `${value} °C`;
+                        }
+
+                    },
+
+                    grid: {
+                        color: gridColor
+                    }
+
+                }
+
+            }
+
+        }
+
+    });
+
+    message.textContent =
+        `${sortedData.length} előrejelzési rekord megjelenítve.`;
 
 }
