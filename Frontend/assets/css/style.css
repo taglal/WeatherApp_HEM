@@ -1,5 +1,5 @@
-/* =========================================================
-   WEATHERAPP CSS - TARTALOMJEGYZÉK
+/* 
+    TARTALOMJEGYZÉK
   
    1. Globális változók és alapstílusok
    2. Navigációs sáv és témaváltó
@@ -17,15 +17,9 @@
    14. Home fejléc finomhangolása
 
    
-========================================================= */
-
-/* =========================================================
-   GLOBAL THEME
-========================================================= */
+ */
 
 :root {
-
-    /* LIGHT THEME */
 
     --bg-main: #eeeeee;
     --bg-secondary: #f7f7f7;
@@ -34,35 +28,21 @@
     --text-secondary: #555555;
     --text-muted: #888888;
 
-    /* GLASS */
-
     --glass-bg: rgba(255, 255, 255, 0.58);
     --glass-bg-strong: rgba(255, 255, 255, 0.78);
 
     --glass-border: rgba(0, 0, 0, 0.12);
 
-    /* KIEMELÉS */
-
     --highlight-bg: #111111;
     --highlight-text: #ffffff;
 
-    /* BELSŐ ELEMEK */
-
     --inner-bg: rgba(0, 0, 0, 0.045);
 
-    /* ÁRNYÉK */
-
     --shadow: rgba(0, 0, 0, 0.16);
-
-    /* INPUT */
 
     --input-bg: rgba(255, 255, 255, 0.65);
     --input-border: rgba(0, 0, 0, 0.14);
 }
-
-/* =========================================================
-   DARK THEME
-========================================================= */
 
 body.dark-theme {
 
@@ -73,35 +53,21 @@ body.dark-theme {
     --text-secondary: #cfcfcf;
     --text-muted: #999999;
 
-    /* FEHÉRES GLASS */
-
     --glass-bg: rgba(255, 255, 255, 0.075);
     --glass-bg-strong: rgba(255, 255, 255, 0.12);
 
     --glass-border: rgba(255, 255, 255, 0.17);
 
-    /* FEHÉR KIEMELÉS */
-
     --highlight-bg: #ffffff;
     --highlight-text: #111111;
 
-    /* BELSŐ ELEMEK */
-
     --inner-bg: rgba(255, 255, 255, 0.065);
 
-    /* ÁRNYÉK */
-
     --shadow: rgba(0, 0, 0, 0.60);
-
-    /* INPUT */
 
     --input-bg: rgba(255, 255, 255, 0.07);
     --input-border: rgba(255, 255, 255, 0.16);
 }
-
-/* =========================================================
-   BODY
-========================================================= */
 
 body {
 
@@ -128,10 +94,6 @@ body {
         background 0.3s ease,
         color 0.3s ease;
 }
-
-/* =========================================================
-   NAVBAR
-========================================================= */
 
 .navbar,
 nav {
@@ -162,10 +124,6 @@ nav {
         box-shadow 0.3s ease;
 }
 
-/* =========================================================
-   NAVBAR TEXT
-========================================================= */
-
 .navbar .navbar-brand,
 .navbar .nav-link,
 .navbar span,
@@ -178,10 +136,6 @@ nav {
         color 0.25s ease,
         background 0.25s ease;
 }
-
-/* =========================================================
-   NAVBAR BRAND
-========================================================= */
 
 .navbar .navbar-brand {
 
@@ -196,10 +150,6 @@ nav {
     color:
         var(--highlight-bg) !important;
 }
-
-/* =========================================================
-   NAVBAR LINKS
-========================================================= */
 
 .navbar .nav-link {
 
@@ -221,10 +171,6 @@ nav {
         var(--highlight-text) !important;
 }
 
-/* =========================================================
-   ACTIVE NAVBAR LINK
-========================================================= */
-
 .navbar .nav-link.active {
 
     background:
@@ -233,10 +179,6 @@ nav {
     color:
         var(--highlight-text) !important;
 }
-
-/* =========================================================
-   THEME BUTTON
-========================================================= */
 
 .theme-toggle {
 
@@ -294,10 +236,6 @@ nav {
         translateY(-1px);
 }
 
-/* =========================================================
-   NAVBAR TOGGLER
-========================================================= */
-
 .navbar-toggler {
 
     border:
@@ -328,10 +266,6 @@ body.dark-theme .navbar-toggler-icon {
 
     filter: invert(1);
 }
-
-/* =========================================================
-   NAVBAR DROPDOWN
-========================================================= */
 
 .navbar .dropdown-menu {
 
@@ -377,10 +311,6 @@ body.dark-theme .navbar-toggler-icon {
         var(--highlight-text) !important;
 }
 
-/* =========================================================
-   NAVBAR MOBILE
-========================================================= */
-
 @media (max-width: 991px) {
 
     .navbar-collapse {
@@ -416,10 +346,6 @@ body.dark-theme .navbar-toggler-icon {
         margin-top: 8px;
     }
 }
-
-/* =========================================================
-   COMMON GLASS
-========================================================= */
 
 .welcome-card,
 .home-weather-main,
@@ -459,10 +385,6 @@ body.dark-theme .navbar-toggler-icon {
         transform 0.25s ease;
 }
 
-/* =========================================================
-   HOME
-========================================================= */
-
 .home-container {
 
     width: 100%;
@@ -472,10 +394,6 @@ body.dark-theme .navbar-toggler-icon {
         0
         40px;
 }
-
-/* =========================================================
-   WELCOME CARD
-========================================================= */
 
 .welcome-card {
 
@@ -498,10 +416,6 @@ body.dark-theme .navbar-toggler-icon {
 
     gap: 20px;
 }
-
-/* =========================================================
-   WELCOME TEXT
-========================================================= */
 
 .welcome-small {
 
@@ -546,10 +460,6 @@ body.dark-theme .navbar-toggler-icon {
 
     font-size: 15px;
 }
-
-/* =========================================================
-   WELCOME ICON
-========================================================= */
 
 .welcome-icon {
 
@@ -618,10 +528,6 @@ body.dark-theme .navbar-toggler-icon {
         rotate(20deg);
 }
 
-/* =========================================================
-   HOME SECTION TITLE
-========================================================= */
-
 .home-section-title {
 
     display: flex;
@@ -650,10 +556,6 @@ body.dark-theme .navbar-toggler-icon {
     margin-right: 8px;
 }
 
-/* =========================================================
-   HOME WEATHER MAIN
-========================================================= */
-
 .home-weather-main {
 
     width: 100%;
@@ -662,10 +564,6 @@ body.dark-theme .navbar-toggler-icon {
 
     border-radius: 24px;
 }
-
-/* =========================================================
-   WEATHER HEADER
-========================================================= */
 
 .weather-header {
 
@@ -712,10 +610,6 @@ body.dark-theme .navbar-toggler-icon {
 
     font-size: 14px;
 }
-
-/* =========================================================
-   WEATHER TYPE
-========================================================= */
 
 .weather-type {
 
@@ -769,10 +663,6 @@ body.dark-theme .navbar-toggler-icon {
     font-weight: 700;
 }
 
-/* =========================================================
-   MAIN TEMPERATURE
-========================================================= */
-
 .home-temperature {
 
     text-align: center;
@@ -797,10 +687,6 @@ body.dark-theme .navbar-toggler-icon {
     letter-spacing: -2px;
 }
 
-/* =========================================================
-   WEATHER INFO GRID
-========================================================= */
-
 .weather-info-grid {
 
     display: grid;
@@ -810,10 +696,6 @@ body.dark-theme .navbar-toggler-icon {
 
     gap: 15px;
 }
-
-/* =========================================================
-   WEATHER INFO CARD
-========================================================= */
 
 .weather-info-card {
 
@@ -842,10 +724,6 @@ body.dark-theme .navbar-toggler-icon {
     background:
         var(--glass-bg-strong);
 }
-
-/* =========================================================
-   WEATHER INFO ICON
-========================================================= */
 
 .weather-info-icon {
 
@@ -895,10 +773,6 @@ body.dark-theme .navbar-toggler-icon {
     font-weight: 700;
 }
 
-/* =========================================================
-   LAST UPDATE
-========================================================= */
-
 .home-last-update {
 
     display: flex;
@@ -917,10 +791,6 @@ body.dark-theme .navbar-toggler-icon {
     font-size: 13px;
 }
 
-/* =========================================================
-   WEATHER PAGE
-========================================================= */
-
 .weather-page {
 
     width: 100%;
@@ -931,10 +801,6 @@ body.dark-theme .navbar-toggler-icon {
         40px;
 }
 
-/* =========================================================
-   FORECAST HEADER
-   Profile / Users / Dashboard stílus
-========================================================= */
 .forecast-page {
     width: 100%;
     min-width: 0;
@@ -953,11 +819,6 @@ body.dark-theme .navbar-toggler-icon {
         transform: translateY(0);
     }
 }
-
-
-/* =========================================
-   FEJLÉC
-========================================= */
 
 .forecast-page-header {
     display: flex;
@@ -1040,11 +901,6 @@ body.dark-theme .navbar-toggler-icon {
     line-height: 1.7;
 }
 
-
-/* =========================================
-   NÉZETVÁLTÓ
-========================================= */
-
 .forecast-view-switch {
     display: flex;
     align-items: center;
@@ -1120,11 +976,6 @@ body.dark-theme .navbar-toggler-icon {
     box-shadow: 0 4px 14px var(--shadow);
 }
 
-
-/* =========================================
-   SZEKCIÓCÍM
-========================================= */
-
 .forecast-section-title {
     display: flex;
     align-items: center;
@@ -1171,11 +1022,6 @@ body.dark-theme .navbar-toggler-icon {
     font-size: 19px;
 }
 
-
-/* =========================================
-   KÁRTYÁS ELRENDEZÉS
-========================================= */
-
 .forecast-list {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1183,11 +1029,6 @@ body.dark-theme .navbar-toggler-icon {
 
     width: 100%;
 }
-
-
-/* =========================================
-   ELŐREJELZÉSI KÁRTYA
-========================================= */
 
 .forecast-card {
     position: relative;
@@ -1231,11 +1072,6 @@ body.dark-theme .navbar-toggler-icon {
     box-shadow: 0 22px 45px var(--shadow);
 }
 
-
-/* =========================================
-   KÁRTYA DÁTUMA
-========================================= */
-
 .forecast-card-date {
     display: flex;
     flex-direction: column;
@@ -1260,11 +1096,6 @@ body.dark-theme .navbar-toggler-icon {
 
     font-size: 12px;
 }
-
-
-/* =========================================
-   KÁRTYA IDŐJÁRÁSA
-========================================= */
 
 .forecast-card-weather {
     display: flex;
@@ -1319,11 +1150,6 @@ body.dark-theme .navbar-toggler-icon {
     flex-shrink: 0;
 }
 
-
-/* =========================================
-   HŐMÉRSÉKLET
-========================================= */
-
 .forecast-card-temperature {
     display: flex;
     align-items: center;
@@ -1352,11 +1178,6 @@ body.dark-theme .navbar-toggler-icon {
     font-size: 12px;
     font-weight: 600;
 }
-
-
-/* =========================================
-   RÉSZLETES ADATOK
-========================================= */
 
 .forecast-card-details {
     display: grid;
@@ -1389,11 +1210,6 @@ body.dark-theme .navbar-toggler-icon {
     color: var(--text-main);
     font-size: 16px;
 }
-
-
-/* =========================================
-   RÉSZLETEK GOMB
-========================================= */
 
 .forecast-card-button {
     display: flex;
@@ -1429,11 +1245,6 @@ body.dark-theme .navbar-toggler-icon {
 .forecast-card-button:active {
     transform: scale(0.98);
 }
-
-
-/* =========================================
-   ÜRES ÁLLAPOT
-========================================= */
 
 .forecast-empty {
     grid-column: 1 / -1;
@@ -1483,11 +1294,6 @@ body.dark-theme .navbar-toggler-icon {
     font-size: 13px;
     line-height: 1.7;
 }
-
-
-/* =========================================
-   GRAFIKON KONTÉNER
-========================================= */
 
 .forecast-chart-view {
     width: 100%;
@@ -1600,11 +1406,6 @@ body.dark-theme .navbar-toggler-icon {
     font-size: 12px;
     line-height: 1.6;
 }
-
-
-/* =========================================
-   FORECAST DETAILS MODAL
-========================================= */
 
 .forecast-modal-content {
     background: var(--glass-bg-strong);
@@ -1814,8 +1615,6 @@ body.dark-theme .navbar-toggler-icon {
     transform: translateY(-1px);
 }
 
-/* MOBILE */
-
 @media (max-width: 576px) {
 
     .forecast-modal-header {
@@ -1870,11 +1669,6 @@ body.dark-theme .navbar-toggler-icon {
         padding: 13px 17px 17px;
     }
 }
-
-
-/* =========================================
-   RESZPONZÍV MEGJELENÉS
-========================================= */
 
 @media (max-width: 1000px) {
 
@@ -1993,10 +1787,6 @@ body.dark-theme .navbar-toggler-icon {
 
 }
 
-/* =========================================================
-   WEATHER SECTION TITLE
-========================================================= */
-
 .weather-section-title {
 
     display: flex;
@@ -2033,10 +1823,6 @@ body.dark-theme .navbar-toggler-icon {
     font-size: 13px;
 }
 
-/* =========================================================
-   WEATHER LIST
-========================================================= */
-
 #weatherList {
 
     display: grid;
@@ -2046,10 +1832,6 @@ body.dark-theme .navbar-toggler-icon {
 
     gap: 20px;
 }
-
-/* =========================================================
-   WEATHER CARD
-========================================================= */
 
 .weather-card {
 
@@ -2065,10 +1847,6 @@ body.dark-theme .navbar-toggler-icon {
     transform:
         translateY(-3px);
 }
-
-/* =========================================================
-   WEATHER CARD HEADER
-========================================================= */
 
 .weather-card-header {
 
@@ -2112,10 +1890,6 @@ body.dark-theme .navbar-toggler-icon {
     font-size: 13px;
 }
 
-/* =========================================================
-   WEATHER CARD TYPE
-========================================================= */
-
 .weather-card-type {
 
     display: flex;
@@ -2155,10 +1929,6 @@ body.dark-theme .navbar-toggler-icon {
         var(--highlight-text);
 }
 
-/* =========================================================
-   WEATHER CARD TEMPERATURE
-========================================================= */
-
 .weather-card-temperature {
 
     margin-bottom: 20px;
@@ -2170,10 +1940,6 @@ body.dark-theme .navbar-toggler-icon {
 
     font-weight: 700;
 }
-
-/* =========================================================
-   WEATHER CARD DETAILS
-========================================================= */
 
 .weather-card-details {
 
@@ -2228,10 +1994,6 @@ body.dark-theme .navbar-toggler-icon {
     font-size: 15px;
 }
 
-/* =========================================================
-   WEATHER CARD ACTIONS
-========================================================= */
-
 .weather-card-actions {
 
     display: flex;
@@ -2277,10 +2039,6 @@ body.dark-theme .navbar-toggler-icon {
     color:
         var(--highlight-text);
 }
-
-/* =========================================================
-   WEATHER MODAL
-========================================================= */
 
 .weather-modal {
 
@@ -2351,10 +2109,6 @@ body.dark-theme .navbar-toggler-icon {
     font-weight: 700;
 }
 
-/* =========================================================
-   WEATHER FORM
-========================================================= */
-
 .weather-modal .form-label {
 
     color:
@@ -2414,10 +2168,6 @@ body.dark-theme .navbar-toggler-icon {
     opacity: 1;
 }
 
-/* =========================================================
-   FORM SECTION
-========================================================= */
-
 .weather-form-section {
 
     margin:
@@ -2446,10 +2196,6 @@ body.dark-theme .navbar-toggler-icon {
 
     font-weight: 700;
 }
-
-/* =========================================================
-   MODAL BUTTONS
-========================================================= */
 
 .weather-btn-primary {
 
@@ -2515,10 +2261,6 @@ body.dark-theme .navbar-toggler-icon {
         var(--highlight-text);
 }
 
-/* =========================================================
-   MODAL CLOSE
-========================================================= */
-
 .weather-modal .btn-close {
 
     filter: none;
@@ -2529,18 +2271,10 @@ body.dark-theme .weather-modal .btn-close {
     filter: invert(1);
 }
 
-/* =========================================================
-   MODAL BACKDROP
-========================================================= */
-
 .modal-backdrop.show {
 
     opacity: 0.7;
 }
-
-/* =========================================================
-   RESPONSIVE - TABLET
-========================================================= */
 
 @media (max-width: 992px) {
 
@@ -2556,10 +2290,6 @@ body.dark-theme .weather-modal .btn-close {
             1fr;
     }
 }
-
-/* =========================================================
-   RESPONSIVE - MOBILE
-========================================================= */
 
 @media (max-width: 768px) {
 
@@ -2627,10 +2357,6 @@ body.dark-theme .weather-modal .btn-close {
         gap: 8px;
     }
 }
-
-/* =========================================================
-   RESPONSIVE - SMALL MOBILE
-========================================================= */
 
 @media (max-width: 480px) {
 
@@ -2733,19 +2459,11 @@ body.dark-theme .weather-modal .btn-close {
 
     margin: 0;
 }
-/* =========================================================
-   ADMIN DASHBOARD
-========================================================= */
 
 .dashboard-page {
     width: 100%;
     padding-bottom: 40px;
 }
-
-/* =========================================
-   DASHBOARD HEADER
-   Profile / Users stílus
-========================================= */
 
 .dashboard-page .dashboard-header {
     position: relative;
@@ -2781,8 +2499,6 @@ body.dark-theme .weather-modal .btn-close {
         transform .25s ease;
 }
 
-/* Felső kiemelő csík */
-
 .dashboard-page .dashboard-header::before {
     content: "";
 
@@ -2796,8 +2512,6 @@ body.dark-theme .weather-modal .btn-close {
     background: var(--text-main);
     opacity: .8;
 }
-
-/* Ikon háttér */
 
 .dashboard-page .dashboard-header-icon {
     display: flex;
@@ -2819,13 +2533,9 @@ body.dark-theme .weather-modal .btn-close {
     box-shadow: 0 10px 30px var(--shadow);
 }
 
-/* Szöveges tartalom */
-
 .dashboard-page .dashboard-header-content {
     min-width: 0;
 }
-
-/* WEATHER APP felirat */
 
 .dashboard-page .dashboard-header-small {
     margin-bottom: 6px;
@@ -2836,8 +2546,6 @@ body.dark-theme .weather-modal .btn-close {
     font-weight: 800;
     letter-spacing: 3px;
 }
-
-/* Főcím */
 
 .dashboard-page .dashboard-header-content h3 {
     margin: 0 0 8px;
@@ -2850,8 +2558,6 @@ body.dark-theme .weather-modal .btn-close {
     line-height: 1.2;
 }
 
-/* Leírás */
-
 .dashboard-page .dashboard-header-content p {
     margin: 0;
 
@@ -2861,16 +2567,10 @@ body.dark-theme .weather-modal .btn-close {
     line-height: 1.6;
 }
 
-/* Hover effekt */
-
 .dashboard-page .dashboard-header:hover {
     border-color: var(--text-muted);
     transform: translateY(-2px);
 }
-
-/* =========================================
-   RESPONSIVE
-========================================= */
 
 @media (max-width: 600px) {
 
@@ -2923,10 +2623,6 @@ body.dark-theme .weather-modal .btn-close {
     }
 }
 
-/* =========================================================
-   SECTION TITLE
-========================================================= */
-
 .dashboard-section-title {
 
     display: flex;
@@ -2967,10 +2663,6 @@ body.dark-theme .weather-modal .btn-close {
 
     margin-top: 34px;
 }
-
-/* =========================================================
-   STAT CARDS
-========================================================= */
 
 .dashboard-stat-card {
 
@@ -3070,10 +2762,6 @@ body.dark-theme .weather-modal .btn-close {
     flex-shrink: 0;
 }
 
-/* =========================================================
-   TABLE CARD
-========================================================= */
-
 .dashboard-table-card {
 
     border-radius: 24px;
@@ -3130,10 +2818,6 @@ body.dark-theme .weather-modal .btn-close {
     margin-right: 7px;
 }
 
-/* =========================================================
-   TABLE
-========================================================= */
-
 .dashboard-table {
 
     margin: 0;
@@ -3189,10 +2873,6 @@ body.dark-theme .weather-modal .btn-close {
     border-bottom: none;
 }
 
-/* =========================================================
-   LOADING
-========================================================= */
-
 .dashboard-loading {
 
     text-align: center;
@@ -3222,10 +2902,6 @@ body.dark-theme .weather-modal .btn-close {
 
 }
 
-/* =========================================================
-   WEATHER TYPES
-========================================================= */
-
 .dashboard-weather-types-card {
 
     padding: 24px;
@@ -3252,10 +2928,6 @@ body.dark-theme .weather-modal .btn-close {
 
     margin-bottom: 22px;
 }
-
-/* =========================================================
-   WEATHER TYPE ITEMS
-========================================================= */
 
 .dashboard-weather-type-item {
 
@@ -3342,10 +3014,6 @@ body.dark-theme .weather-modal .btn-close {
     font-weight: 700;
 }
 
-/* =========================================================
-   DARK THEME EXTRA
-========================================================= */
-
 body.dark-theme .dashboard-stat-card,
 body.dark-theme .dashboard-table-card,
 body.dark-theme .dashboard-weather-types-card,
@@ -3354,10 +3022,6 @@ body.dark-theme .dashboard-header {
     box-shadow:
         0 20px 55px rgba(0, 0, 0, 0.65);
 }
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
 
 @media (max-width: 768px) {
 
@@ -3422,9 +3086,6 @@ body.dark-theme .dashboard-header {
     }
 
 }
-/* =========================================================
-   USERS PAGE
-========================================================= */
 
 .users-page {
 
@@ -3432,10 +3093,6 @@ body.dark-theme .dashboard-header {
 
     padding-bottom: 40px;
 }
-
-/* =========================================================
-   HEADER
-========================================================= */
 
 .users-header {
 
@@ -3522,10 +3179,6 @@ body.dark-theme .dashboard-header {
     font-size: 14px;
 }
 
-/* =========================================================
-   SECTION TITLE
-========================================================= */
-
 .users-section-title {
 
     display: flex;
@@ -3566,10 +3219,6 @@ body.dark-theme .dashboard-header {
     font-size: 13px;
 }
 
-/* =========================================================
-   USER COUNT
-========================================================= */
-
 .users-count {
 
     display: flex;
@@ -3603,10 +3252,6 @@ body.dark-theme .dashboard-header {
     font-size: 14px;
 }
 
-/* =========================================================
-   TABLE CARD
-========================================================= */
-
 .users-table-card {
 
     overflow: hidden;
@@ -3629,10 +3274,6 @@ body.dark-theme .dashboard-header {
     box-shadow:
         0 20px 50px var(--shadow);
 }
-
-/* =========================================================
-   TABLE HEADER
-========================================================= */
 
 .users-table-header {
 
@@ -3696,10 +3337,6 @@ body.dark-theme .dashboard-header {
 
     white-space: nowrap;
 }
-
-/* =========================================================
-   TABLE
-========================================================= */
 
 .users-table {
 
@@ -3769,10 +3406,6 @@ body.dark-theme .dashboard-header {
     border-bottom: none;
 }
 
-/* =========================================================
-   EMPTY STATE
-========================================================= */
-
 .users-empty {
 
     text-align: center;
@@ -3792,10 +3425,6 @@ body.dark-theme .dashboard-header {
 
     color: var(--text-main);
 }
-
-/* =========================================================
-   STATUS SWITCH
-========================================================= */
 
 .users-table .form-check-input {
 
@@ -3830,10 +3459,6 @@ body.dark-theme .dashboard-header {
     box-shadow: none;
 }
 
-/* =========================================================
-   ROLE
-========================================================= */
-
 .users-table .user-role {
 
     display: inline-flex;
@@ -3861,10 +3486,6 @@ body.dark-theme .dashboard-header {
 
     font-size: 12px;
 }
-
-/* =========================================================
-   ACTION BUTTON
-========================================================= */
 
 .users-table .user-action {
 
@@ -3898,20 +3519,12 @@ body.dark-theme .dashboard-header {
     opacity: 0.8;
 }
 
-/* =========================================================
-   DARK THEME
-========================================================= */
-
 body.dark-theme .users-header,
 body.dark-theme .users-table-card {
 
     box-shadow:
         0 20px 55px rgba(0, 0, 0, 0.65);
 }
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
 
 @media (max-width: 768px) {
 
@@ -3968,24 +3581,16 @@ body.dark-theme .users-table-card {
     }
 
 }
-/* =========================================================
-   ADMIN WEATHER - JS GENERATED CARDS
-========================================================= */
 
 #weatherList {
     width: 100%;
 }
-
-/* =========================================================
-   ADMIN WEATHER - RESPONSIVE FIX
-========================================================= */
 
 .admin-weather-page {
     width: 100%;
     min-width: 0;
 }
 
-/* Az admin kártyák teljes szélességű listája */
 .admin-weather-page #weatherList {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
@@ -3994,7 +3599,6 @@ body.dark-theme .users-table-card {
     min-width: 0;
 }
 
-/* Fő kártya */
 .admin-weather-page .admin-weather-card {
     width: 100%;
     min-width: 0;
@@ -4003,7 +3607,6 @@ body.dark-theme .users-table-card {
     box-sizing: border-box;
 }
 
-/* A kártyán belüli négy adat */
 .admin-weather-page .admin-weather-card-body {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -4014,7 +3617,6 @@ body.dark-theme .users-table-card {
     box-sizing: border-box;
 }
 
-/* Egyedi adatmezők */
 .admin-weather-page .admin-weather-item {
     width: 100%;
     min-width: 0;
@@ -4022,12 +3624,10 @@ body.dark-theme .users-table-card {
     overflow-wrap: anywhere;
 }
 
-/* Ikonok ne zsugorodjanak */
 .admin-weather-page .admin-weather-icon {
     flex-shrink: 0;
 }
 
-/* Címkék és értékek */
 .admin-weather-page .admin-weather-item h5,
 .admin-weather-page .admin-weather-item p {
     max-width: 100%;
@@ -4035,7 +3635,6 @@ body.dark-theme .users-table-card {
     word-break: break-word;
 }
 
-/* Kártya alsó része */
 .admin-weather-page .admin-weather-card-footer {
     display: flex;
     justify-content: space-between;
@@ -4046,14 +3645,12 @@ body.dark-theme .users-table-card {
     box-sizing: border-box;
 }
 
-/* Dátum */
 .admin-weather-page .admin-weather-date {
     min-width: 0;
     flex-wrap: wrap;
     overflow-wrap: anywhere;
 }
 
-/* Műveleti gombok */
 .admin-weather-page .admin-weather-actions {
     display: flex;
     flex-wrap: wrap;
@@ -4069,10 +3666,6 @@ body.dark-theme .users-table-card {
     white-space: normal;
 }
 
-/* =========================================================
-   KISEBB ASZTALI KÉPERNYŐK ÉS TABLETEK
-========================================================= */
-
 @media (max-width: 1100px) {
     .admin-weather-page .admin-weather-card-body {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -4080,10 +3673,6 @@ body.dark-theme .users-table-card {
         padding: 20px;
     }
 }
-
-/* =========================================================
-   MOBIL
-========================================================= */
 
 @media (max-width: 600px) {
     .admin-weather-page .admin-weather-card-body {
@@ -4120,10 +3709,6 @@ body.dark-theme .users-table-card {
     }
 }
 
-/* =========================================================
-   WEATHER CARD
-========================================================= */
-
 .admin-weather-card {
     width: 100%;
     margin-bottom: 24px;
@@ -4156,10 +3741,6 @@ body.dark-theme .users-table-card {
         0 18px 45px var(--shadow);
 }
 
-/* =========================================================
-   CARD BODY
-========================================================= */
-
 .admin-weather-card-body {
 
     display: grid;
@@ -4171,10 +3752,6 @@ body.dark-theme .users-table-card {
 
     padding: 28px;
 }
-
-/* =========================================================
-   WEATHER ITEM
-========================================================= */
 
 .admin-weather-item {
 
@@ -4208,10 +3785,6 @@ body.dark-theme .users-table-card {
 
     transform: translateY(-3px);
 }
-
-/* =========================================================
-   ICON
-========================================================= */
 
 .admin-weather-icon {
 
@@ -4247,10 +3820,6 @@ body.dark-theme .users-table-card {
     transform: scale(1.08);
 }
 
-/* =========================================================
-   ITEM TEXT
-========================================================= */
-
 .admin-weather-item h5 {
 
     margin: 5px 0 8px;
@@ -4275,10 +3844,6 @@ body.dark-theme .users-table-card {
     word-break: break-word;
 }
 
-/* =========================================================
-   FOOTER
-========================================================= */
-
 .admin-weather-card-footer {
 
     display: flex;
@@ -4294,10 +3859,6 @@ body.dark-theme .users-table-card {
 
     background: var(--inner-bg);
 }
-
-/* =========================================================
-   DATE
-========================================================= */
 
 .admin-weather-date {
 
@@ -4321,10 +3882,6 @@ body.dark-theme .users-table-card {
     font-size: 16px;
 }
 
-/* =========================================================
-   ACTIONS
-========================================================= */
-
 .admin-weather-actions {
 
     display: flex;
@@ -4333,10 +3890,6 @@ body.dark-theme .users-table-card {
 
     gap: 10px;
 }
-
-/* =========================================================
-   EDIT BUTTON
-========================================================= */
 
 .admin-weather-edit-btn {
 
@@ -4376,10 +3929,6 @@ body.dark-theme .users-table-card {
 
     margin-right: 5px;
 }
-
-/* =========================================================
-   DELETE BUTTON
-========================================================= */
 
 .admin-weather-delete-btn {
 
@@ -4422,10 +3971,6 @@ body.dark-theme .users-table-card {
 
     margin-right: 5px;
 }
-
-/* =========================================================
-   EMPTY STATE
-========================================================= */
 
 .weather-empty {
 
@@ -4470,10 +4015,6 @@ body.dark-theme .users-table-card {
 
     color: var(--text-secondary);
 }
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
 
 @media (max-width: 992px) {
 
@@ -4522,10 +4063,6 @@ body.dark-theme .users-table-card {
 
 }
 
-/* =========================================================
-   LOGIN PAGE
-========================================================= */
-
 .login-page {
     width: 100%;
     min-height: 75vh;
@@ -4539,10 +4076,6 @@ body.dark-theme .users-table-card {
 
     color: var(--text-main);
 }
-
-/* =========================================================
-   HEADER
-========================================================= */
 
 .login-heading {
     text-align: center;
@@ -4586,10 +4119,6 @@ body.dark-theme .users-table-card {
     font-size: 15px;
 }
 
-/* =========================================================
-   LOGIN CARD
-========================================================= */
-
 .login-card {
     width: 100%;
     max-width: 470px;
@@ -4615,10 +4144,6 @@ body.dark-theme .users-table-card {
 .login-card:hover {
     border-color: var(--glass-border);
 }
-
-/* =========================================================
-   CARD HEADER
-========================================================= */
 
 .login-card-header {
     display: flex;
@@ -4661,10 +4186,6 @@ body.dark-theme .users-table-card {
     color: var(--text-secondary);
     font-size: 13px;
 }
-
-/* =========================================================
-   FORM FIELDS
-========================================================= */
 
 .login-field {
     margin-bottom: 22px;
@@ -4741,10 +4262,6 @@ body.dark-theme .users-table-card {
     transition: background-color 9999s ease-in-out 0s;
 }
 
-/* =========================================================
-   SHOW / HIDE PASSWORD
-========================================================= */
-
 .login-password-toggle {
     position: absolute;
     right: 10px;
@@ -4774,10 +4291,6 @@ body.dark-theme .users-table-card {
     background: var(--inner-bg);
     color: var(--text-main);
 }
-
-/* =========================================================
-   SUBMIT BUTTON
-========================================================= */
 
 .login-submit {
     width: 100%;
@@ -4836,10 +4349,6 @@ body.dark-theme .users-table-card {
     outline-offset: 4px;
 }
 
-/* =========================================================
-   REGISTER LINK
-========================================================= */
-
 .login-register {
     display: flex;
     flex-wrap: wrap;
@@ -4877,10 +4386,6 @@ body.dark-theme .users-table-card {
     margin-left: 3px;
 }
 
-/* =========================================================
-   FOOTER
-========================================================= */
-
 .login-footer {
     display: flex;
     align-items: center;
@@ -4898,10 +4403,6 @@ body.dark-theme .users-table-card {
     color: var(--text-secondary);
     font-size: 16px;
 }
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
 
 @media (max-width: 576px) {
     .login-page {
@@ -4936,10 +4437,6 @@ body.dark-theme .users-table-card {
     }
 }
 
-/* =========================================
-   ADMIN WEATHER HEADER
-========================================= */
-
 .admin-weather-page .admin-weather-header {
     display: flex;
     align-items: center;
@@ -4966,8 +4463,6 @@ body.dark-theme .users-table-card {
         transform 0.3s ease;
 }
 
-/* Finom díszítő fény a kártyán */
-
 .admin-weather-page .admin-weather-header::before {
     content: "";
     position: absolute;
@@ -4980,8 +4475,6 @@ body.dark-theme .users-table-card {
     background: var(--text-main);
     opacity: 0.8;
 }
-
-/* Ikon háttere */
 
 .admin-weather-page .admin-weather-header-icon {
     display: flex;
@@ -5002,8 +4495,6 @@ body.dark-theme .users-table-card {
 
     box-shadow: 0 8px 22px var(--shadow);
 }
-
-/* A fejléc szövege */
 
 .admin-weather-page .admin-weather-header > div:last-child {
     min-width: 0;
@@ -5037,16 +4528,10 @@ body.dark-theme .users-table-card {
     line-height: 1.6;
 }
 
-/* Hover effekt */
-
 .admin-weather-page .admin-weather-header:hover {
     border-color: var(--text-muted);
     transform: translateY(-2px);
 }
-
-/* =========================================
-   RESPONSIVE
-========================================= */
 
 @media (max-width: 600px) {
     .admin-weather-page .admin-weather-header {
@@ -5095,20 +4580,12 @@ body.dark-theme .users-table-card {
     }
 }
 
-/* =========================================
-   PROFILE PAGE
-========================================= */
-
 .profile-page {
     width: 100%;
     min-width: 0;
     padding: 10px 0 40px;
     color: var(--text-main);
 }
-
-/* =========================================
-   PROFILE HEADER
-========================================= */
 
 .profile-header {
     position: relative;
@@ -5211,10 +4688,6 @@ body.dark-theme .users-table-card {
     line-height: 1.6;
 }
 
-/* =========================================
-   SECTION TITLE
-========================================= */
-
 .profile-section-title {
     margin-bottom: 20px;
 }
@@ -5240,10 +4713,6 @@ body.dark-theme .users-table-card {
     font-size: 14px;
 }
 
-/* =========================================
-   PROFILE GRID
-========================================= */
-
 .profile-grid {
     display: grid;
 
@@ -5257,10 +4726,6 @@ body.dark-theme .users-table-card {
     width: 100%;
     min-width: 0;
 }
-
-/* =========================================
-   PROFILE CARDS
-========================================= */
 
 .profile-card {
     min-width: 0;
@@ -5292,10 +4757,6 @@ body.dark-theme .users-table-card {
     transform: translateY(-3px);
     border-color: var(--text-muted);
 }
-
-/* =========================================
-   CARD HEADER
-========================================= */
 
 .profile-card-header {
     display: flex;
@@ -5341,18 +4802,10 @@ body.dark-theme .users-table-card {
     font-size: 13px;
 }
 
-/* =========================================
-   CARD BODY
-========================================= */
-
 .profile-card-body {
     padding: 26px;
     min-width: 0;
 }
-
-/* =========================================
-   FORM
-========================================= */
 
 .profile-form-group {
     margin-bottom: 23px;
@@ -5411,10 +4864,6 @@ body.dark-theme .users-table-card {
     outline: none;
 }
 
-/* =========================================
-   SAVE BUTTON
-========================================= */
-
 .profile-form-actions {
     display: flex;
     justify-content: flex-end;
@@ -5459,10 +4908,6 @@ body.dark-theme .users-table-card {
     outline: 2px solid var(--text-main);
     outline-offset: 4px;
 }
-
-/* =========================================
-   ACCOUNT IDENTITY
-========================================= */
 
 .profile-account-identity {
     display: flex;
@@ -5523,10 +4968,6 @@ body.dark-theme .users-table-card {
     letter-spacing: 0.5px;
 }
 
-/* =========================================
-   ACCOUNT STATUS
-========================================= */
-
 .profile-account-status {
     display: inline-flex;
     align-items: center;
@@ -5546,10 +4987,6 @@ body.dark-theme .users-table-card {
 
     background: var(--text-main);
 }
-
-/* =========================================
-   DETAIL ROWS
-========================================= */
 
 .profile-detail-row {
     display: flex;
@@ -5596,10 +5033,6 @@ body.dark-theme .users-table-card {
     overflow-wrap: anywhere;
 }
 
-/* =========================================
-   SECURITY NOTE
-========================================= */
-
 .profile-security-note {
     display: flex;
     align-items: flex-start;
@@ -5636,10 +5069,6 @@ body.dark-theme .users-table-card {
     color: var(--text-main);
 }
 
-/* =========================================
-   RESPONSIVE - TABLET
-========================================= */
-
 @media (max-width: 900px) {
     .profile-grid {
         grid-template-columns: minmax(0, 1fr);
@@ -5649,10 +5078,6 @@ body.dark-theme .users-table-card {
         padding: 24px;
     }
 }
-
-/* =========================================
-   RESPONSIVE - MOBILE
-========================================= */
 
 @media (max-width: 600px) {
     .profile-header {
@@ -5717,10 +5142,6 @@ body.dark-theme .users-table-card {
     }
 }
 
-/* =========================================
-   VERY SMALL MOBILE
-========================================= */
-
 @media (max-width: 380px) {
     .profile-header {
         align-items: flex-start;
@@ -5745,24 +5166,11 @@ body.dark-theme .users-table-card {
     }
 }
 
-/* =========================================
-   PASSWORD PAGE
-========================================= */
-
 .password-page {
     width: 100%;
     padding-bottom: 30px;
     color: var(--text-main);
 }
-
-/* =========================================
-   HEADER
-========================================= */
-
-/* =========================================
-   PASSWORD HEADER
-   Egységes WeatherApp fejléc
-========================================= */
 
 .password-page .password-header {
     position: relative;
@@ -5799,8 +5207,6 @@ body.dark-theme .users-table-card {
         transform .25s ease;
 }
 
-/* Felső kiemelő csík */
-
 .password-page .password-header::before {
     content: "";
 
@@ -5814,8 +5220,6 @@ body.dark-theme .users-table-card {
     background: var(--text-main);
     opacity: .8;
 }
-
-/* Ikon */
 
 .password-page .password-header-icon {
     display: flex;
@@ -5837,13 +5241,9 @@ body.dark-theme .users-table-card {
     box-shadow: 0 10px 30px var(--shadow);
 }
 
-/* Szöveges tartalom */
-
 .password-page .password-header-content {
     min-width: 0;
 }
-
-/* WEATHER APP felirat */
 
 .password-page .password-header-small {
     margin-bottom: 6px;
@@ -5854,8 +5254,6 @@ body.dark-theme .users-table-card {
     font-weight: 800;
     letter-spacing: 3px;
 }
-
-/* Főcím */
 
 .password-page .password-header-content h3 {
     margin: 0 0 8px;
@@ -5868,8 +5266,6 @@ body.dark-theme .users-table-card {
     line-height: 1.2;
 }
 
-/* Leírás */
-
 .password-page .password-header-content p {
     margin: 0;
 
@@ -5879,16 +5275,10 @@ body.dark-theme .users-table-card {
     line-height: 1.6;
 }
 
-/* Hover effekt */
-
 .password-page .password-header:hover {
     border-color: var(--text-muted);
     transform: translateY(-2px);
 }
-
-/* =========================================
-   RESPONSIVE
-========================================= */
 
 @media (max-width: 600px) {
 
@@ -5941,10 +5331,6 @@ body.dark-theme .users-table-card {
     }
 }
 
-/* =========================================
-   CONTENT
-========================================= */
-
 .password-content {
     display: flex;
     justify-content: center;
@@ -5965,10 +5351,6 @@ body.dark-theme .users-table-card {
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
 }
-
-/* =========================================
-   CARD HEADING
-========================================= */
 
 .password-card-heading {
     display: flex;
@@ -6019,10 +5401,6 @@ body.dark-theme .users-table-card {
 
     background: var(--glass-border);
 }
-
-/* =========================================
-   FORM GROUPS
-========================================= */
 
 .password-form-group {
     margin-bottom: 23px;
@@ -6092,10 +5470,6 @@ body.dark-theme .users-table-card {
     transition: background-color 9999s ease-in-out 0s;
 }
 
-/* =========================================
-   SHOW / HIDE PASSWORD
-========================================= */
-
 .password-toggle {
     position: absolute;
     right: 12px;
@@ -6121,10 +5495,6 @@ body.dark-theme .users-table-card {
     background: var(--inner-bg);
 }
 
-/* =========================================
-   HELPER TEXT
-========================================= */
-
 .password-help {
     display: flex;
     align-items: center;
@@ -6140,10 +5510,6 @@ body.dark-theme .users-table-card {
 .password-help i {
     font-size: 14px;
 }
-
-/* =========================================
-   SUBMIT BUTTON
-========================================= */
 
 .password-submit-button {
     width: 100%;
@@ -6188,10 +5554,6 @@ body.dark-theme .users-table-card {
     font-size: 17px;
 }
 
-/* =========================================
-   SECURITY NOTE
-========================================= */
-
 .password-security-note {
     display: flex;
     align-items: flex-start;
@@ -6227,10 +5589,6 @@ body.dark-theme .users-table-card {
     font-size: 12px;
     line-height: 1.6;
 }
-
-/* =========================================
-   RESPONSIVE
-========================================= */
 
 @media (max-width: 768px) {
 
@@ -6312,10 +5670,6 @@ body.dark-theme .users-table-card {
     }
 }
 
-/* =========================================
-   USERS HEADER - PROFILE STYLE
-========================================= */
-
 .users-page .users-header {
     position: relative;
 
@@ -6351,8 +5705,6 @@ body.dark-theme .users-table-card {
         transform 0.25s ease;
 }
 
-/* TOP DECORATIVE LINE */
-
 .users-page .users-header::before {
     content: "";
 
@@ -6366,8 +5718,6 @@ body.dark-theme .users-table-card {
     background: var(--text-main);
     opacity: 0.8;
 }
-
-/* HEADER ICON */
 
 .users-page .users-header-icon {
     display: flex;
@@ -6387,8 +5737,6 @@ body.dark-theme .users-table-card {
 
     box-shadow: 0 10px 30px var(--shadow);
 }
-
-/* HEADER CONTENT */
 
 .users-page .users-header-content {
     min-width: 0;
@@ -6424,16 +5772,10 @@ body.dark-theme .users-table-card {
     line-height: 1.6;
 }
 
-/* HOVER */
-
 .users-page .users-header:hover {
     border-color: var(--text-muted);
     transform: translateY(-2px);
 }
-
-/* =========================================
-   RESPONSIVE
-========================================= */
 
 @media (max-width: 600px) {
 
@@ -6486,11 +5828,6 @@ body.dark-theme .users-table-card {
     }
 }
 
-/* =========================================
-   HOME WELCOME HEADER
-   Profile / Users / Dashboard stílus
-========================================= */
-
 .home-container .welcome-card {
     position: relative;
 
@@ -6522,8 +5859,6 @@ body.dark-theme .users-table-card {
         transform .25s ease;
 }
 
-/* Felső kiemelő csík */
-
 .home-container .welcome-card::before {
     content: "";
 
@@ -6538,8 +5873,6 @@ body.dark-theme .users-table-card {
     opacity: .8;
 }
 
-/* Belső elrendezés */
-
 .home-container .welcome-content {
     display: flex;
     align-items: center;
@@ -6551,13 +5884,9 @@ body.dark-theme .users-table-card {
     min-width: 0;
 }
 
-/* Szöveges rész */
-
 .home-container .welcome-text {
     min-width: 0;
 }
-
-/* WEATHER APP felirat */
 
 .home-container .welcome-small {
     display: flex;
@@ -6578,8 +5907,6 @@ body.dark-theme .users-table-card {
     font-size: 14px;
 }
 
-/* Főcím */
-
 .home-container .welcome-card h2 {
     margin: 0 0 8px;
 
@@ -6591,8 +5918,6 @@ body.dark-theme .users-table-card {
     line-height: 1.2;
 }
 
-/* Üdvözlő szöveg */
-
 .home-container .welcome-card p {
     margin: 0;
 
@@ -6601,8 +5926,6 @@ body.dark-theme .users-table-card {
     font-size: 14px;
     line-height: 1.6;
 }
-
-/* Témaikon tartója */
 
 .home-container .welcome-icon {
     display: flex;
@@ -6621,8 +5944,6 @@ body.dark-theme .users-table-card {
 
     box-shadow: 0 10px 30px var(--shadow);
 }
-
-/* Témaváltó gomb */
 
 .home-container .welcome-icon-button {
     display: flex;
@@ -6658,16 +5979,10 @@ body.dark-theme .users-table-card {
     outline-offset: 4px;
 }
 
-/* Hover effekt */
-
 .home-container .welcome-card:hover {
     border-color: var(--text-muted);
     transform: translateY(-2px);
 }
-
-/* =========================================
-   RESPONSIVE
-========================================= */
 
 @media (max-width: 600px) {
     .home-container .welcome-card {
