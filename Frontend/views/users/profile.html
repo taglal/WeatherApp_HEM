@@ -1,94 +1,213 @@
-<h3>
-    <i class="bi bi-person-circle"></i>
-    My Profile
-</h3>
 
-<hr>
+<div class="profile-page">
 
-<div class="row">
+    <!-- PROFILE HEADER -->
+    <div class="profile-header">
 
-
-<div class="col-md-6">
-
-    <div class="card">
-
-        <div class="card-body">
-
-            <h5 class="card-title">
-                Account information
-            </h5>
-
-            <div class="mb-3">
-
-                <label for="profileName" class="form-label">
-                    Name
-                </label>
-
-                <input
-                    type="text"
-                    id="profileName"
-                    class="form-control"
-                >
-
-            </div>
-
-
-            <div class="mb-3">
-
-                <label for="profileEmail" class="form-label">
-                    Email
-                </label>
-
-                <input
-                    type="email"
-                    id="profileEmail"
-                    class="form-control"
-                >
-
-            </div>
-
-
-            <button
-                type="button"
-                class="btn btn-primary"
-                onclick="updateProfile()">
-
-                <i class="bi bi-save"></i>
-                Save changes
-
-            </button>
-
+        <div class="profile-header-icon">
+            <i class="bi bi-person-circle"></i>
         </div>
 
-    </div>
+        <div class="profile-header-content">
 
-</div>
+            <div class="profile-header-small">
+                WEATHER APP
+            </div>
 
-
-<div class="col-md-6">
-
-    <div class="card">
-
-        <div class="card-body">
-
-            <h5 class="card-title">
-                Account
-            </h5>
+            <h3>My Profile</h3>
 
             <p>
-                <strong>Role:</strong>
-                <span id="profileRole">-</span>
-            </p>
-
-            <p>
-                <strong>User ID:</strong>
-                <span id="profileID">-</span>
+                Manage your personal information and account details
             </p>
 
         </div>
 
     </div>
 
-</div>
+
+    <!-- PROFILE CONTENT -->
+    <div class="profile-section-title">
+
+        <div>
+            <h4>
+                <i class="bi bi-person-gear"></i>
+                Profile settings
+            </h4>
+
+            <p>Update your account information below.</p>
+        </div>
+
+    </div>
+
+
+    <div class="profile-grid">
+
+        <!-- ACCOUNT INFORMATION -->
+        <div class="profile-card profile-information-card">
+
+            <div class="profile-card-header">
+
+                <div class="profile-card-icon">
+                    <i class="bi bi-person-lines-fill"></i>
+                </div>
+
+                <div>
+                    <h5>Account information</h5>
+                    <p>Your personal details</p>
+                </div>
+
+            </div>
+
+
+            <div class="profile-card-body">
+
+                <div class="profile-form-group">
+
+                    <label for="profileName">
+                        <i class="bi bi-person"></i>
+                        Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="profileName"
+                        class="form-control profile-input"
+                        placeholder="Enter your name"
+                        autocomplete="name"
+                    >
+
+                </div>
+
+
+                <div class="profile-form-group">
+
+                    <label for="profileEmail">
+                        <i class="bi bi-envelope"></i>
+                        Email address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="profileEmail"
+                        class="form-control profile-input"
+                        placeholder="Enter your email"
+                        autocomplete="email"
+                    >
+
+                </div>
+
+
+                <div class="profile-form-actions">
+
+                    <button
+                        type="button"
+                        class="profile-save-button"
+                        onclick="updateProfile()"
+                    >
+                        <i class="bi bi-check2-circle"></i>
+                        Save changes
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ACCOUNT DETAILS -->
+        <div class="profile-card profile-account-card">
+
+            <div class="profile-card-header">
+
+                <div class="profile-card-icon">
+                    <i class="bi bi-shield-check"></i>
+                </div>
+
+                <div>
+                    <h5>Account details</h5>
+                    <p>Your account information</p>
+                </div>
+
+            </div>
+
+
+            <div class="profile-card-body">
+
+                <div class="profile-account-identity">
+
+                    <div class="profile-avatar">
+                        <i class="bi bi-person-fill"></i>
+                    </div>
+
+                    <div>
+                        <span class="profile-detail-label">
+                            Account holder
+                        </span>
+
+                        <h4 id="profileDisplayName">
+                            Loading...
+                        </h4>
+
+                        <span class="profile-account-status">
+                            <span class="profile-status-dot"></span>
+                            Account information
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <div class="profile-detail-row">
+
+                    <div class="profile-detail-icon">
+                        <i class="bi bi-person-badge"></i>
+                    </div>
+
+                    <div class="profile-detail-content">
+                        <span class="profile-detail-label">
+                            User ID
+                        </span>
+
+                        <strong id="profileID">-</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="profile-detail-row">
+
+                    <div class="profile-detail-icon">
+                        <i class="bi bi-shield-lock"></i>
+                    </div>
+
+                    <div class="profile-detail-content">
+                        <span class="profile-detail-label">
+                            Account role
+                        </span>
+
+                        <strong id="profileRole">-</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="profile-security-note">
+
+                    <i class="bi bi-info-circle"></i>
+
+                    <p>
+                        Keep your account information up to date.
+                        Your changes are saved when you select
+                        <strong>Save changes</strong>.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </div>

@@ -4,6 +4,13 @@ const mysql = require('mysql');
 require('dotenv').config();
 const sha1 = require('sha1');
 
+const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9\s])\S{8,}$/;
+
+function isValidPassword(password) {
+    return passwordRegex.test(password);
+}
+
 const app = express();
 
 app.use(cors());
@@ -17,6 +24,7 @@ const pool = mysql.createPool({
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME
 });
+
 
 
 pool.getConnection((err, connection) => {
@@ -69,11 +77,13 @@ app.post('/users/register', (req, res) => {
     }
 
     
-    if (passwd.length < 6) {
-        return res.status(400).json({
-            error: 'Password must be at least 6 characters long'
+
+    if (!isValidPassword(passwd)) {
+    return res.status(400).json({
+        error: 'Password must be at least 8 characters and contain an uppercase letter, a lowercase letter, a number and a special character'
         });
     }
+
 
     
     const checkSql = 'SELECT ID FROM users WHERE email = ?';
@@ -980,11 +990,13 @@ app.post('/users/:uid/passmod', (req, res) => {
         });
     }
 
-    if (newpass.length < 6) {
-        return res.status(400).json({
-            error: 'Password must be at least 6 characters long'
+   
+    if (!isValidPassword(newpass)) {
+    return res.status(400).json({
+        error: 'Password must be at least 8 characters and contain an uppercase letter, a lowercase letter, a number and a special character'
         });
     }
+
 
     const sql = `
         SELECT passwd

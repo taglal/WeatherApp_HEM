@@ -212,6 +212,13 @@ async function getProfile() {
         document.querySelector('#profileID').innerText =
             res.ID;
 
+        // Account holder nevének betöltése
+        const displayName = document.querySelector('#profileDisplayName');
+
+        if (displayName) {
+            displayName.textContent = res.name;
+        }
+
     } catch (error) {
 
         console.log(error);
@@ -223,6 +230,7 @@ async function getProfile() {
         );
     }
 }
+
 async function updateProfile() {
 
     const user = loadUser();
@@ -496,6 +504,27 @@ function showHomeGreeting() {
     textElement.textContent = text;
 
     iconElement.className = icon;
+}
+
+function togglePasswordVisibility(inputID, button) {
+
+    const input = document.getElementById(inputID);
+
+    if (!input) {
+        return;
+    }
+
+    const icon = button.querySelector('i');
+
+    if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.remove('bi-eye');
+        icon.classList.add('bi-eye-slash');
+    } else {
+        input.type = 'password';
+        icon.classList.remove('bi-eye-slash');
+        icon.classList.add('bi-eye');
+    }
 }
 
 
