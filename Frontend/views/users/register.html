@@ -1,74 +1,113 @@
 
-<h3>
-    <i class="bi bi-person-plus-fill"></i>
-    Register
-</h3>
+<div class="register-page">
 
-<hr>
+    <div class="register-header">
+        <div class="register-header-icon">
+            <i class="bi bi-person-plus-fill"></i>
+        </div>
 
-<div class="row justify-content-center">
+        <h3>Register</h3>
 
-    <div class="col-lg-6">
+        <p>Create your account and get started</p>
+    </div>
 
-        <div class="card shadow-sm">
+    <div class="register-container">
 
-            <div class="card-body p-4">
+        <div class="register-card">
 
-                <h5 class="mb-4">Create your account</h5>
+            <div class="register-card-header">
+                <h5>Create your account</h5>
+                <p>Fill in the details below to register.</p>
+            </div>
 
-                <div class="form-floating mb-3">
+            <div class="register-form">
+
+                <div class="form-floating register-input-group">
                     <input
                         type="text"
-                        class="form-control"
+                        class="form-control register-input"
                         id="registerName"
-                        placeholder="Name">
-                    <label for="registerName">Name</label>
+                        placeholder="Name"
+                        autocomplete="name"
+                    >
+                    <label for="registerName">
+                        <i class="bi bi-person me-2"></i>
+                        Name
+                    </label>
                 </div>
 
-                <div class="form-floating mb-3">
+                <div class="form-floating register-input-group">
                     <input
                         type="email"
-                        class="form-control"
+                        class="form-control register-input"
                         id="registerEmail"
-                        placeholder="Email">
-                    <label for="registerEmail">Email</label>
+                        placeholder="Email"
+                        autocomplete="email"
+                    >
+                    <label for="registerEmail">
+                        <i class="bi bi-envelope me-2"></i>
+                        Email
+                    </label>
                 </div>
 
-                <div class="form-floating mb-3">
+                <div class="form-floating register-input-group">
                     <input
                         type="password"
-                        class="form-control"
+                        class="form-control register-input"
                         id="registerPassword"
-                        placeholder="Password">
-                    <label for="registerPassword">Password</label>
+                        placeholder="Password"
+                        autocomplete="new-password"
+                    >
+                    <label for="registerPassword">
+                        <i class="bi bi-lock me-2"></i>
+                        Password
+                    </label>
                 </div>
 
-                <div class="form-floating mb-3">
+                <div class="form-floating register-input-group">
                     <input
                         type="password"
-                        class="form-control"
+                        class="form-control register-input"
                         id="registerConfirm"
-                        placeholder="Confirm password">
-                    <label for="registerConfirm">Confirm password</label>
+                        placeholder="Confirm password"
+                        autocomplete="new-password"
+                    >
+                    <label for="registerConfirm">
+                        <i class="bi bi-shield-lock me-2"></i>
+                        Confirm password
+                    </label>
                 </div>
 
                 <button
                     type="button"
-                    class="btn btn-primary w-100"
-                    onclick="register()">
-                    <i class="bi bi-person-plus"></i>
-                    Register
+                    class="register-submit-button"
+                    onclick="register()"
+                >
+                    <span>Create account</span>
+                    <i class="bi bi-arrow-right"></i>
                 </button>
-
-                <div class="text-center mt-3">
-                    Already have an account?
-                    <a href="#" onclick="navigate('views/users/login')">
-                        Login
-                    </a>
-                </div>
 
             </div>
 
+            <div class="register-card-footer">
+                <span>Already have an account?</span>
+
+                <a
+                    href="#"
+                    onclick="navigate('views/users/login'); return false;"
+                >
+                    Login
+                    <i class="bi bi-arrow-up-right"></i>
+                </a>
+            </div>
+
+        </div>
+
+        <div class="register-bottom-text">
+            <i class="bi bi-cloud-sun"></i>
+            WeatherApp
+            <span class="register-bottom-separator">·</span>
+            Your weather, at a glance.
         </div>
 
     </div>
