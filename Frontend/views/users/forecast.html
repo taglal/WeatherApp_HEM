@@ -1,9 +1,4 @@
-
 <div class="forecast-page">
-
-    <!-- =========================================
-         FEJLÉC
-    ========================================== -->
 
     <div class="forecast-page-header">
 
@@ -25,9 +20,6 @@
             </p>
 
         </div>
-
-
-        <!-- NÉZETVÁLTÓ -->
 
         <div class="forecast-view-switch">
 
@@ -69,11 +61,6 @@
 
     </div>
 
-
-    <!-- =========================================
-         SZEKCIÓCÍM
-    ========================================== -->
-
     <div class="forecast-section-title">
 
         <div>
@@ -89,11 +76,6 @@
         </div>
 
     </div>
-
-
-    <!-- =========================================
-         GRAFIKONOS NÉZET
-    ========================================== -->
 
     <div
         id="forecastChartView"
@@ -117,9 +99,6 @@
 
             </div>
 
-
-            <!-- JELMAGYARÁZAT -->
-
             <div class="forecast-chart-legend">
 
                 <span>
@@ -136,17 +115,9 @@
 
         </div>
 
-
-        <!-- GRAFIKON -->
-
         <div class="forecast-chart-canvas">
-
             <canvas id="forecastTemperatureChart"></canvas>
-
         </div>
-
-
-        <!-- GRAFIKON ÁLLAPOTA -->
 
         <p
             id="forecastChartMessage"
@@ -155,11 +126,6 @@
         </p>
 
     </div>
-
-
-    <!-- =========================================
-         KÁRTYÁS NÉZET
-    ========================================== -->
 
     <div
         id="forecastList"
@@ -179,196 +145,202 @@
 
     </div>
 
+    <div
+        class="modal fade"
+        id="forecastModal"
+        tabindex="-1"
+        aria-labelledby="forecastModalLabel"
+        aria-hidden="true">
 
-    <!-- =========================================
-         RÉSZLETES ELŐREJELZÉS MODAL
-    ========================================== -->
+        <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
 
-<!-- FORECAST DETAILS MODAL -->
-<div class="modal fade" id="forecastModal" tabindex="-1"
-     aria-labelledby="forecastModalLabel" aria-hidden="true">
+            <div class="modal-content forecast-modal-content">
 
-    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+                <div class="modal-header forecast-modal-header">
 
-        <div class="modal-content forecast-modal-content">
+                    <div class="forecast-modal-heading">
 
-            <!-- HEADER -->
-            <div class="modal-header forecast-modal-header">
-
-                <div class="forecast-modal-heading">
-
-                    <div class="forecast-modal-main-icon">
-                        <i class="bi bi-cloud-sun-fill"></i>
-                    </div>
-
-                    <div>
-                        <div class="forecast-modal-eyebrow">
-                            WEATHER APP
+                        <div class="forecast-modal-main-icon">
+                            <i class="bi bi-cloud-sun-fill"></i>
                         </div>
 
-                        <h5 class="modal-title" id="forecastModalLabel">
-                            Részletes előrejelzés
-                        </h5>
+                        <div>
+                            <div class="forecast-modal-eyebrow">
+                                WEATHER APP
+                            </div>
 
-                        <div class="forecast-modal-subtitle"
-                             id="forecastModalLocation">
-                            Helyszín betöltése...
+                            <h5 class="modal-title" id="forecastModalLabel">
+                                Részletes előrejelzés
+                            </h5>
+
+                            <div
+                                class="forecast-modal-subtitle"
+                                id="forecastModalLocation">
+                                Helyszín betöltése...
+                            </div>
                         </div>
+
                     </div>
 
-                </div>
-
-                <button type="button"
+                    <button
+                        type="button"
                         class="btn-close"
                         data-bs-dismiss="modal"
                         aria-label="Bezárás">
-                </button>
-
-            </div>
-
-            <!-- BODY -->
-            <div class="modal-body forecast-modal-body">
-
-                <div class="forecast-modal-date">
-                    <i class="bi bi-calendar3"></i>
-                    <span id="forecastModalDate">-</span>
-
-                    <span class="forecast-modal-weather-type"
-                          id="forecastModalType">
-                        -
-                    </span>
-                </div>
-
-                <!-- TEMPERATURE -->
-                <div class="forecast-modal-temperature-grid">
-
-                    <div class="forecast-detail-card temperature-min-card">
-
-                        <div class="forecast-detail-icon">
-                            <i class="bi bi-thermometer-snow"></i>
-                        </div>
-
-                        <div class="forecast-detail-label">
-                            Minimum-hőmérséklet
-                        </div>
-
-                        <div class="forecast-detail-value"
-                             id="forecastModalMin">
-                            -- °C
-                        </div>
-
-                    </div>
-
-                    <div class="forecast-detail-card temperature-max-card">
-
-                        <div class="forecast-detail-icon">
-                            <i class="bi bi-thermometer-sun"></i>
-                        </div>
-
-                        <div class="forecast-detail-label">
-                            Maximum-hőmérséklet
-                        </div>
-
-                        <div class="forecast-detail-value"
-                             id="forecastModalMax">
-                            -- °C
-                        </div>
-
-                    </div>
+                    </button>
 
                 </div>
 
-                <!-- OTHER WEATHER DATA -->
-                <div class="forecast-modal-section-title">
-                    <i class="bi bi-info-circle"></i>
-                    További időjárási adatok
+                <div class="modal-body forecast-modal-body">
+
+                    <div class="forecast-modal-date">
+                        <i class="bi bi-calendar3"></i>
+
+                        <span id="forecastModalDate">-</span>
+
+                        <span
+                            class="forecast-modal-weather-type"
+                            id="forecastModalType">
+                            -
+                        </span>
+                    </div>
+
+                    <div class="forecast-modal-temperature-grid">
+
+                        <div class="forecast-detail-card temperature-min-card">
+
+                            <div class="forecast-detail-icon">
+                                <i class="bi bi-thermometer-snow"></i>
+                            </div>
+
+                            <div class="forecast-detail-label">
+                                Minimum-hőmérséklet
+                            </div>
+
+                            <div
+                                class="forecast-detail-value"
+                                id="forecastModalMin">
+                                -- °C
+                            </div>
+
+                        </div>
+
+                        <div class="forecast-detail-card temperature-max-card">
+
+                            <div class="forecast-detail-icon">
+                                <i class="bi bi-thermometer-sun"></i>
+                            </div>
+
+                            <div class="forecast-detail-label">
+                                Maximum-hőmérséklet
+                            </div>
+
+                            <div
+                                class="forecast-detail-value"
+                                id="forecastModalMax">
+                                -- °C
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="forecast-modal-section-title">
+                        <i class="bi bi-info-circle"></i>
+                        További időjárási adatok
+                    </div>
+
+                    <div class="forecast-modal-details-grid">
+
+                        <div class="forecast-detail-card">
+
+                            <div class="forecast-detail-icon">
+                                <i class="bi bi-droplet-half"></i>
+                            </div>
+
+                            <div class="forecast-detail-label">
+                                Páratartalom
+                            </div>
+
+                            <div
+                                class="forecast-detail-value"
+                                id="forecastModalHumidity">
+                                -- %
+                            </div>
+
+                        </div>
+
+                        <div class="forecast-detail-card">
+
+                            <div class="forecast-detail-icon">
+                                <i class="bi bi-cloud-rain"></i>
+                            </div>
+
+                            <div class="forecast-detail-label">
+                                Csapadék
+                            </div>
+
+                            <div
+                                class="forecast-detail-value"
+                                id="forecastModalPrecipitation">
+                                -- mm
+                            </div>
+
+                        </div>
+
+                        <div class="forecast-detail-card">
+
+                            <div class="forecast-detail-icon">
+                                <i class="bi bi-wind"></i>
+                            </div>
+
+                            <div class="forecast-detail-label">
+                                Szélsebesség
+                            </div>
+
+                            <div
+                                class="forecast-detail-value"
+                                id="forecastModalWind">
+                                -- km/h
+                            </div>
+
+                        </div>
+
+                        <div class="forecast-detail-card">
+
+                            <div class="forecast-detail-icon">
+                                <i class="bi bi-sun"></i>
+                            </div>
+
+                            <div class="forecast-detail-label">
+                                UV-index
+                            </div>
+
+                            <div
+                                class="forecast-detail-value"
+                                id="forecastModalUv">
+                                --
+                            </div>
+
+                        </div>
+
+                    </div>
+
                 </div>
 
-                <div class="forecast-modal-details-grid">
+                <div class="modal-footer forecast-modal-footer">
 
-                    <div class="forecast-detail-card">
-
-                        <div class="forecast-detail-icon">
-                            <i class="bi bi-droplet-half"></i>
-                        </div>
-
-                        <div class="forecast-detail-label">
-                            Páratartalom
-                        </div>
-
-                        <div class="forecast-detail-value"
-                             id="forecastModalHumidity">
-                            -- %
-                        </div>
-
-                    </div>
-
-                    <div class="forecast-detail-card">
-
-                        <div class="forecast-detail-icon">
-                            <i class="bi bi-cloud-rain"></i>
-                        </div>
-
-                        <div class="forecast-detail-label">
-                            Csapadék
-                        </div>
-
-                        <div class="forecast-detail-value"
-                             id="forecastModalPrecipitation">
-                            -- mm
-                        </div>
-
-                    </div>
-
-                    <div class="forecast-detail-card">
-
-                        <div class="forecast-detail-icon">
-                            <i class="bi bi-wind"></i>
-                        </div>
-
-                        <div class="forecast-detail-label">
-                            Szélsebesség
-                        </div>
-
-                        <div class="forecast-detail-value"
-                             id="forecastModalWind">
-                            -- km/h
-                        </div>
-
-                    </div>
-
-                    <div class="forecast-detail-card">
-
-                        <div class="forecast-detail-icon">
-                            <i class="bi bi-sun"></i>
-                        </div>
-
-                        <div class="forecast-detail-label">
-                            UV-index
-                        </div>
-
-                        <div class="forecast-detail-value"
-                             id="forecastModalUv">
-                            --
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!-- FOOTER -->
-            <div class="modal-footer forecast-modal-footer">
-
-                <button type="button"
+                    <button
+                        type="button"
                         class="forecast-modal-close-button"
                         data-bs-dismiss="modal">
 
-                    <i class="bi bi-x-lg"></i>
-                    Bezárás
+                        <i class="bi bi-x-lg"></i>
+                        Bezárás
 
-                </button>
+                    </button>
+
+                </div>
 
             </div>
 
@@ -377,8 +349,3 @@
     </div>
 
 </div>
-
-    
-           
-
-

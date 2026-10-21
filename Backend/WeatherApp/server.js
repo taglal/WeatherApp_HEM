@@ -137,9 +137,7 @@ app.post('/users/register', (req, res) => {
 
 //weather
 
-// ==============================
-// WEATHER - ÖSSZES REKORD
-// ==============================
+
 
 app.get('/weather', (req, res) => {
 
@@ -486,9 +484,7 @@ app.post('/admin/users', (req, res) => {
     });
 });
 
-// ==============================
-// ADMIN DASHBOARD
-// ==============================
+
 
 app.post('/admin/dashboard', (req, res) => {
 
@@ -500,7 +496,7 @@ app.post('/admin/dashboard', (req, res) => {
         });
     }
 
-    // Admin ellenőrzése
+    
     const checkSql = `
         SELECT role
         FROM users
@@ -530,9 +526,6 @@ app.post('/admin/dashboard', (req, res) => {
         }
 
 
-        // =========================
-        // FŐ STATISZTIKÁK
-        // =========================
 
         const statisticsSql = `
             SELECT
@@ -561,9 +554,6 @@ app.post('/admin/dashboard', (req, res) => {
             }
 
 
-            // =========================
-            // LEGUTÓBBI REKORDOK
-            // =========================
 
             const latestSql = `
                 SELECT
@@ -597,9 +587,6 @@ app.post('/admin/dashboard', (req, res) => {
                 }
 
 
-                // =========================
-                // IDŐJÁRÁS TÍPUSOK
-                // =========================
 
                 const weatherTypesSql = `
                     SELECT
@@ -714,7 +701,7 @@ app.patch('/admin/status', (req, res) => {
     });
 });
 
-//login
+
 
 
 app.post('/users/login', (req, res) => {
@@ -830,9 +817,7 @@ app.get('/users/:uid', (req, res) => {
     });
 });
 
-// ==============================
-// PROFILE MÓDOSÍTÁSA
-// ==============================
+
 
 app.patch('/users/:uid', (req, res) => {
 
@@ -845,9 +830,7 @@ app.patch('/users/:uid', (req, res) => {
     } = req.body;
 
 
-    // =========================
-    // ADATOK ELLENŐRZÉSE
-    // =========================
+
 
     if (!username || !email || !loggedUserID) {
 
@@ -858,7 +841,7 @@ app.patch('/users/:uid', (req, res) => {
     }
 
 
-    // Csak a saját profilját módosíthatja
+
     if (Number(uid) !== Number(loggedUserID)) {
 
         return res.status(403).json({
@@ -868,9 +851,7 @@ app.patch('/users/:uid', (req, res) => {
     }
 
 
-    // =========================
-    // EMAIL ELLENŐRZÉSE
-    // =========================
+
 
     const emailRegex =
         /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -884,9 +865,7 @@ app.patch('/users/:uid', (req, res) => {
     }
 
 
-    // =========================
-    // EMAIL FOGLALTSÁG
-    // =========================
+
 
     const checkSql = `
         SELECT ID
@@ -920,9 +899,7 @@ app.patch('/users/:uid', (req, res) => {
             }
 
 
-            // =========================
-            // USER FRISSÍTÉSE
-            // =========================
+
 
             const sql = `
                 UPDATE users

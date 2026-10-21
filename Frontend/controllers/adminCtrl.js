@@ -189,9 +189,6 @@ async function changeUserStatus(uid, status) {
     getAllUsers();
 }
 
-// ==============================
-// ADMIN WEATHER DASHBOARD
-// ==============================
 
 async function getDashboard() {
 
@@ -249,9 +246,7 @@ async function getDashboard() {
 }
 
 
-// ==============================
-// DASHBOARD MEGJELENÍTÉSE
-// ==============================
+
 
 function drawDashboard(data) {
 
@@ -259,9 +254,6 @@ function drawDashboard(data) {
     const latest = data.latest;
 
 
-    // =========================
-    // STATISZTIKAI KÁRTYÁK
-    // =========================
 
     document.querySelector('#totalRecords').textContent =
         Number(statistics.totalRecords || 0).toLocaleString();
@@ -279,9 +271,7 @@ function drawDashboard(data) {
         `${Number(statistics.averageHumidity || 0).toFixed(1)} %`;
 
 
-    // =========================
-    // LEGUTÓBBI REKORDOK
-    // =========================
+
 
     const list = document.querySelector('#latestWeatherList');
 
@@ -342,9 +332,7 @@ function drawDashboard(data) {
         `;
 
         list.appendChild(tr);
-        // =========================
-// IDŐJÁRÁS TÍPUSOK
-// =========================
+
 
 const weatherTypes =
     data.weatherTypes || [];

@@ -1,54 +1,43 @@
 <div class="home-container">
 
+    <div class="welcome-card">
 
+        <div class="welcome-content">
 
-<!-- =========================================
-     WELCOME HEADER
-========================================= -->
+            <div class="welcome-text">
 
-<div class="welcome-card">
+                <div class="welcome-small">
+                    <i class="bi bi-stars"></i>
+                    WEATHER APP
+                </div>
 
-    <div class="welcome-content">
+                <h2 id="homeGreeting">
+                    Üdvözöllek!
+                </h2>
 
-        <div class="welcome-text">
+                <p id="homeGreetingText">
+                    Örülünk, hogy újra itt vagy.
+                </p>
 
-            <div class="welcome-small">
-                <i class="bi bi-stars"></i>
-                WEATHER APP
             </div>
 
-            <h2 id="homeGreeting">
-                Üdvözöllek!
-            </h2>
+            <div class="welcome-icon">
 
-            <p id="homeGreetingText">
-                Örülünk, hogy újra itt vagy.
-            </p>
+                <button
+                    type="button"
+                    class="welcome-icon-button"
+                    onclick="toggleTheme()"
+                    aria-label="Téma váltása">
 
-        </div>
+                    <i id="homeGreetingIcon" class="bi bi-sun"></i>
 
-        <div class="welcome-icon">
+                </button>
 
-            <button
-                type="button"
-                class="welcome-icon-button"
-                onclick="toggleTheme()"
-                aria-label="Téma váltása">
-
-                <i id="homeGreetingIcon" class="bi bi-sun"></i>
-
-            </button>
+            </div>
 
         </div>
 
     </div>
-
-</div>
-
-
-    <!-- =========================================
-         SECTION TITLE
-    ========================================== -->
 
     <div class="home-section-title">
 
@@ -59,15 +48,7 @@
 
     </div>
 
-
-    <!-- =========================================
-         WEATHER MAIN CARD
-    ========================================== -->
-
     <div class="home-weather-main">
-
-
-        <!-- LOCATION + DATE -->
 
         <div class="weather-header">
 
@@ -81,7 +62,6 @@
 
             </div>
 
-
             <div
                 class="weather-date"
                 id="homeWeatherDate">
@@ -90,32 +70,19 @@
 
         </div>
 
-
-        <!-- WEATHER TYPE -->
-
         <div class="weather-type">
 
             <div class="weather-type-icon">
-
                 <i class="bi bi-cloud-sun"></i>
-
             </div>
-
 
             <div
                 class="weather-type-text"
                 id="homeWeatherType">
-
                 -
-
             </div>
 
         </div>
-
-
-        <!-- =========================================
-             MAIN TEMPERATURE
-        ========================================== -->
 
         <div class="home-temperature">
 
@@ -129,22 +96,12 @@
 
         </div>
 
-
-        <!-- =========================================
-             WEATHER INFORMATION
-        ========================================== -->
-
         <div class="weather-info-grid">
-
-
-            <!-- MINIMUM -->
 
             <div class="weather-info-card">
 
                 <div class="weather-info-icon">
-
                     <i class="bi bi-thermometer-low"></i>
-
                 </div>
 
                 <div class="weather-info-title">
@@ -154,22 +111,15 @@
                 <div
                     class="weather-info-value"
                     id="homeTempMin">
-
                     -- °C
-
                 </div>
 
             </div>
 
-
-            <!-- MAXIMUM -->
-
             <div class="weather-info-card">
 
                 <div class="weather-info-icon">
-
                     <i class="bi bi-thermometer-high"></i>
-
                 </div>
 
                 <div class="weather-info-title">
@@ -179,22 +129,15 @@
                 <div
                     class="weather-info-value"
                     id="homeTempMax">
-
                     -- °C
-
                 </div>
 
             </div>
 
-
-            <!-- HUMIDITY -->
-
             <div class="weather-info-card">
 
                 <div class="weather-info-icon">
-
                     <i class="bi bi-droplet"></i>
-
                 </div>
 
                 <div class="weather-info-title">
@@ -204,22 +147,15 @@
                 <div
                     class="weather-info-value"
                     id="homeHumidity">
-
                     -- %
-
                 </div>
 
             </div>
 
-
-            <!-- PRECIPITATION -->
-
             <div class="weather-info-card">
 
                 <div class="weather-info-icon">
-
                     <i class="bi bi-cloud-rain"></i>
-
                 </div>
 
                 <div class="weather-info-title">
@@ -229,22 +165,15 @@
                 <div
                     class="weather-info-value"
                     id="homePrecipitation">
-
                     -- mm
-
                 </div>
 
             </div>
 
-
-            <!-- WIND -->
-
             <div class="weather-info-card">
 
                 <div class="weather-info-icon">
-
                     <i class="bi bi-wind"></i>
-
                 </div>
 
                 <div class="weather-info-title">
@@ -254,22 +183,15 @@
                 <div
                     class="weather-info-value"
                     id="homeWind">
-
                     -- km/h
-
                 </div>
 
             </div>
 
-
-            <!-- UV -->
-
             <div class="weather-info-card">
 
                 <div class="weather-info-icon">
-
                     <i class="bi bi-sun"></i>
-
                 </div>
 
                 <div class="weather-info-title">
@@ -279,19 +201,12 @@
                 <div
                     class="weather-info-value"
                     id="homeUv">
-
                     --
-
                 </div>
 
             </div>
 
         </div>
-
-
-        <!-- =========================================
-             LAST UPDATE
-        ========================================== -->
 
         <div class="home-last-update">
 

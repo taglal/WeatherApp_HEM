@@ -840,9 +840,7 @@ async function getHomeWeather() {
 
     }
 }
-// =========================================================
-// FORECAST
-// =========================================================
+
 
 async function getForecast() {
 
@@ -868,9 +866,7 @@ async function getForecast() {
             await response.json();
 
 
-        // =================================================
-        // CSAK A MAI ÉS JÖVŐBELI NAPOK
-        // =================================================
+
 
         const today =
             new Date().toLocaleDateString(
@@ -903,20 +899,15 @@ async function getForecast() {
                 );
 
 
-        // =================================================
-        // GRAFIKON ADATAINAK ELTÁROLÁSA
-        // =================================================
 
         forecastChartData = forecastData;
 
 
-        // Korábbi kártyák törlése
+        
         forecastList.innerHTML = '';
 
 
-        // =================================================
-        // NINCS ADAT
-        // =================================================
+
 
         if (forecastData.length === 0) {
 
@@ -953,9 +944,7 @@ async function getForecast() {
         }
 
 
-        // =================================================
-        // KÁRTYÁK
-        // =================================================
+
 
         forecastData.forEach(weather => {
 
@@ -985,9 +974,7 @@ async function getForecast() {
                 );
 
 
-            // =================================================
-            // IDŐJÁRÁS IKON
-            // =================================================
+
 
             let weatherIcon =
                 'bi-cloud-sun';
@@ -1042,10 +1029,7 @@ async function getForecast() {
             }
 
 
-            // =================================================
-            // KÁRTYA LÉTREHOZÁSA
-            // =================================================
-
+        
             forecastList.innerHTML += `
 
                 <div class="forecast-card">
@@ -1161,9 +1145,7 @@ async function getForecast() {
         });
 
 
-        // =================================================
-        // GRAFIKON FRISSÍTÉSE, HA AZ A KIVÁLASZTOTT NÉZET
-        // =================================================
+
 
         if (forecastViewMode === 'chart') {
             drawForecastTemperatureChart();
@@ -1229,7 +1211,7 @@ async function showForecastDetails(id) {
             }
         };
 
-        // Dátum formázása időzóna miatti eltolás nélkül
+        
         const dateText = String(weather.date ?? '').slice(0, 10);
         const dateParts = dateText.split('-');
 
@@ -1320,18 +1302,13 @@ async function showForecastDetails(id) {
 }
 
 
-/* =========================================
-   FORECAST VIEW SWITCH + TEMPERATURE CHART
-========================================= */
+
 
 let forecastViewMode = 'cards';
 let forecastChartData = [];
 let forecastChartInstance = null;
 
 
-/* =========================================
-   NÉZETVÁLTÁS
-========================================= */
 
 function setForecastView(mode) {
 
@@ -1349,27 +1326,25 @@ function setForecastView(mode) {
 
     const showChart = mode === 'chart';
 
-    // Kártyák és grafikon közötti váltás
+    
     forecastList.style.display = showChart ? 'none' : '';
     chartView.style.display = showChart ? 'block' : 'none';
 
-    // Aktív gomb megjelenítése
+   
     cardsButton.classList.toggle('active', !showChart);
     chartButton.classList.toggle('active', showChart);
 
     cardsButton.setAttribute('aria-pressed', String(!showChart));
     chartButton.setAttribute('aria-pressed', String(showChart));
 
-    // A grafikon kirajzolása
+    
     if (showChart) {
         drawForecastTemperatureChart();
     }
 }
 
 
-/* =========================================
-   HŐMÉRSÉKLETI GRAFIKON
-========================================= */
+
 
 function drawForecastTemperatureChart() {
 
@@ -1380,30 +1355,30 @@ function drawForecastTemperatureChart() {
         return;
     }
 
-    // Chart.js ellenőrzése
+    
     if (typeof Chart === 'undefined') {
         message.textContent = 'A grafikonkönyvtár nem tölthető be.';
         return;
     }
 
-    // Korábbi grafikon törlése
+    
     if (forecastChartInstance) {
         forecastChartInstance.destroy();
         forecastChartInstance = null;
     }
 
-    // Nincs megjeleníthető adat
+    
     if (!forecastChartData || forecastChartData.length === 0) {
         message.textContent = 'Nincs megjeleníthető előrejelzési adat.';
         return;
     }
 
-    // Adatok rendezése dátum szerint
+    
     const sortedData = [...forecastChartData].sort((a, b) => {
         return new Date(a.date) - new Date(b.date);
     });
 
-    // Dátumok előkészítése
+    
     const labels = sortedData.map(item => {
 
         const dateText = String(item.date).slice(0, 10);
@@ -1416,7 +1391,7 @@ function drawForecastTemperatureChart() {
         return `${parts[2]}.${parts[1]}.`;
     });
 
-    // Minimum- és maximum-hőmérsékletek
+   
     const minValues = sortedData.map(item => {
         return item.temp_min == null ? null : Number(item.temp_min);
     });
@@ -1425,7 +1400,7 @@ function drawForecastTemperatureChart() {
         return item.temp_max == null ? null : Number(item.temp_max);
     });
 
-    // Színek a jelenlegi témához igazítva
+   
     const styles = getComputedStyle(document.body);
 
     const textColor =
@@ -1443,7 +1418,7 @@ function drawForecastTemperatureChart() {
         'rgba(128, 128, 128, 0.25)';
 
 
-    // Grafikon létrehozása
+    
     forecastChartInstance = new Chart(canvas, {
 
         type: 'line',
@@ -1502,7 +1477,7 @@ function drawForecastTemperatureChart() {
 
             plugins: {
 
-                // A külön jelmagyarázatot a HTML biztosítja
+                
                 legend: {
                     display: false
                 },

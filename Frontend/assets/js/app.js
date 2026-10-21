@@ -89,9 +89,7 @@ async function navigate(page) {
     }
 }
 
-/* =========================================================
-   THEME
-========================================================= */
+
 
 function loadTheme() {
 
@@ -111,9 +109,7 @@ function loadTheme() {
 }
 
 
-/* =========================================================
-   THEME TOGGLE
-========================================================= */
+
 
 function toggleTheme() {
 
@@ -131,9 +127,7 @@ function toggleTheme() {
 }
 
 
-/* =========================================================
-   UPDATE BUTTON
-========================================================= */
+
 
 function updateThemeButton() {
 
@@ -216,9 +210,7 @@ function updateNavbar() {
     const user = loadUser();
 
 
-    // =========================
-    // VENDÉG
-    // =========================
+
 
     if (!user) {
 
@@ -253,9 +245,6 @@ function updateNavbar() {
     }
 
 
-    // =========================
-    // BEJELENTKEZETT USER
-    // =========================
 
     userMenu.innerHTML = `
 
@@ -285,9 +274,7 @@ function updateNavbar() {
     `;
 
 
-    // =========================
-    // ADMIN MENÜ
-    // =========================
+
 
     if (user.role === 'admin') {
 
@@ -332,9 +319,6 @@ function updateNavbar() {
     }
 
 
-    // =========================
-    // PROFILE / PASSWORD / LOGOUT
-    // =========================
 
     userMenu.innerHTML += `
 
